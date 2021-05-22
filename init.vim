@@ -115,6 +115,9 @@ if has("autocmd")
 	autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
+" Neovim Gui settings
+set guifont=JetbrainsMono\ Nerd\ Font:h14
+
 " Keybindings
 " Open a buffer for scribble
 map <Leader>q :e C:\Users\Lenovo\Desktop\School\text\buffer.txt
@@ -156,5 +159,4 @@ function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
 let g:coc_snippet_next = '<tab>'
