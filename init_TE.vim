@@ -17,7 +17,6 @@ Plug 'uiiaoo/java-syntax.vim'
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'scrooloose/syntastic'
 " Minimalistic Editing
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -71,12 +70,12 @@ set mouse+=a
 set noswapfile
 set nobackup
 autocmd FocusLost * :wa
-set undodir=~/.undodir
 set undofile
 
-" Use powershell for commands
-set shell=powershell shellquote=( shellpipe=\| shellredir=> shellxquote=
-    set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command)
+" Use powershell
+set shell=powershell shellquote=( shellpipe=\| shellxquote=
+		set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
+		set shellredir=\|\ Out-File\ -Encoding\ UTF8
 
 " Faster window movement
 nnoremap <C-j> <C-w>j
@@ -114,16 +113,6 @@ autocmd! User GoyoLeave Limelight!
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 " Delete trailing white space on save
 fun! CleanExtraSpaces()
 	let save_cursor = getpos(".")
@@ -139,7 +128,7 @@ endif
 
 " Keybindings
 " Open a buffer for scribble
-map <Leader>q :e C:\Users\Lenovo\Desktop\School\text\buffer.txt <CR>
+map <Leader>q :e C:\Users\Lenovo\School\text\buffer.txt <CR>
 
 " Toggle spell check
 inoremap <Leader>sp <C-\><C-O>:setlocal spelllang=en_us spell! spell?<CR>
@@ -161,7 +150,7 @@ nmap <Leader>l :setinvrelativenumber<CR>
 map <Leader>ev :e $MYVIMRC<CR>
 
 " Navigate to code directory
-map <Leader>j :cd C:\Users\Lenovo\Desktop\School\javaC0de<CR>
+map <Leader>j :cd C:\Users\Lenovo\School\javaC0de<CR>
 
 " Automatically fix the last misspelled word and jump back to where you were.
 nnoremap <leader>w :normal! mz[s1z=`z<CR>`]
