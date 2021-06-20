@@ -1,4 +1,4 @@
-fortune | lolcat
+fortune
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -118,16 +118,16 @@ if ! shopt -oq posix; then
 fi
 
 # aliases
-alias ms="cd /mnt/c/users/Lenovo/Desktop/My Stuff"
-alias sch="cd /mnt/c/users/Lenovo/Desktop/School/"
-alias dk="cd /mnt/c/users/lenovo/desktop"
-alias home="cd /mnt/c/users/lenovo/"
-alias jc="cd /mnt/c/Users/Lenovo/Desktop/School/javaC0de"
-alias cam="cambrinary -w"
-alias fl="fortune|lolcat"
+alias ms="cd /mnt/c/users/money/My\ Stuff"
+alias sch="cd /mnt/c/users/money/School"
+alias home="cd /mnt/c/users/money"
+alias jc="cd /mnt/c/users/money/school/javaC0de"
+alias dict="cambrinary -w"
+alias fl="fortune | lolcat"
 alias python="python3"
 alias pip="pip3"
-alias aliases="cat ~/aliases.txt"
+alias nodejs="node"
+alias sl="ls"
 
 #Fix dircolors
 export LS_COLORS=$(echo $LS_COLORS | sed "s/ow=34;42/ow=01;34/g")
@@ -136,7 +136,3 @@ export LS_COLORS=$(echo $LS_COLORS | sed "s/ow=34;42/ow=01;34/g")
 export EDITOR=vim
 export BROWSER=wslview
 bind 'set bell-style none'
-
-eval $(thefuck --alias)
-# You can use whatever you want as an alias, like for Mondays:
-eval $(thefuck --alias FUCK)
