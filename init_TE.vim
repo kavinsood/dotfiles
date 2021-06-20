@@ -1,48 +1,37 @@
-" Vim plug settings
+" Plugins
 call plug#begin()
-" Status bar
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " File browser
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ryanoasis/vim-devicons'
-" Fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Status line
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Code
-Plug 'jiangmiao/auto-pairs'
 Plug 'uiiaoo/java-syntax.vim'
-Plug 'ervandew/supertab'
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" Minimalistic Editing
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Colorschemes
+Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
-Plug 'lifepillar/vim-solarized8'
-Plug 'arcticicestudio/nord-vim'
 call plug#end()
+"set rtp+=~/tabnine-vim
 
-" Colorschemes
+" Colorscheme
 set termguicolors
 syntax on
-colorscheme nord
-
-" Indenting
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set autoindent
-set smartindent
-set smarttab
+let g:gruvbox_contrast_dark='hard'
+set background=dark
+colorscheme gruvbox
+set cursorline
 
 " General settings
 set nocompatible
+set nu rnu
 set title
-set number
 set encoding=utf8
 set incsearch
 set hlsearch
@@ -50,51 +39,51 @@ set ignorecase
 set backspace=eol,start,indent
 set showmatch
 set showcmd
-set hidden
 set noerrorbells
-let mapleader=","
-set cursorline
+set lazyredraw
+let mapleader=" "
 set matchpairs+=<:>
 set wildmenu
 set spelllang=en_us
+set foldenable
 autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o
-set list lcs=tab:\|\ 
+set splitright
+set splitbelow
+set mouse+=a
+highlight link javaIdentifier NONE
+
+" Indenting settings
 filetype indent on
 filetype plugin indent on
-set splitright 
-set splitbelow
-highlight link javaIndentifier NONE
-set mouse+=a
-
-" Backup and persistent undo
-set noswapfile
-set nobackup
-autocmd FocusLost * :wa
+set list lcs=tab:\|\ 
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set autoindent
+set smarttab
+set smartindent
+set backupdir=.backup/,~/.backup/,/tmp//
+set directory=.swp/,~/.swp/,/tmp//
+set undodir=.undo/,~/.undo/,/tmp//
+set backup
+set writebackup
+set swapfile
 set undofile
 
-" Use powershell
-set shell=powershell shellquote=( shellpipe=\| shellxquote=
-		set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
-		set shellredir=\|\ Out-File\ -Encoding\ UTF8
+" Statusline settings
+let g:airline_powerline_fonts = 1
+set cmdheight=1
+set noshowmode
+set noruler
 
-" Faster window movement
+" Better window movement
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <S-Tab> <C-w>w
 
-" Plugin config
-" Vim-airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_powerline_fonts = 1
-set t_Co=256
-set laststatus=0
-set cmdheight=1
-set noshowmode
-set noruler
-
+" Plugin configurations
 " NERDTree
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
@@ -103,35 +92,27 @@ let NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeGitStatusUseNerdFonts = 1
 let g:NERDTreeGitStatusUntrackedFilesMode = 'all'
 let g:NERDTreeGitStatusConcealBrackets = 1
-map <Leader>n :NERDTreeToggle<CR>
+nnoremap <Leader>n :NERDTreeToggle<CR>
 
-" Goyo
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+" Coc.nvim
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-
-" Delete trailing white space on save
-fun! CleanExtraSpaces()
-	let save_cursor = getpos(".")
-	let old_query = getreg('/')
-	silent! %s/\s\+$//e
-	call setpos('.', save_cursor)
-	call setreg('/', old_query)
-endfun
-
-if has("autocmd")
-	autocmd BufWritePre *.txt,*.js,*.py,*.sh,*.md,*.java :call CleanExtraSpaces()
-endif
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+let g:coc_snippet_next = '<tab>'
 
 " Keybindings
 " Open a buffer for scribble
-map <Leader>q :e C:\Users\Lenovo\School\text\buffer.txt <CR>
+nnoremap <Leader>q :e /mnt/c/users/money/school/text/buffer.txt <CR>
 
 " Toggle spell check
-inoremap <Leader>sp <C-\><C-O>:setlocal spelllang=en_us spell! spell?<CR>
+nnoremap <Leader>sp <C-\><C-O>:setlocal spelllang=en_us spell! spell?<CR>
 set complete+=kspell
 
 " Compile and move through errors in java file
@@ -143,14 +124,27 @@ map <Leader>m :cprevious<Return>
 " Run java file
 map <Leader>r :!java %:t:r<CR>
 
-" Toggle relative line numbers and regular line numbers
-nmap <Leader>l :setinvrelativenumber<CR>
+" Turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
 
-" Edit Nvim config file in a new tab
+" Edit vim config file in a new tab
 map <Leader>ev :e $MYVIMRC<CR>
 
-" Navigate to code directory
-map <Leader>j :cd C:\Users\Lenovo\School\javaC0de<CR>
+" highlight last inserted text
+nnoremap gV `[v`]
 
-" Automatically fix the last misspelled word and jump back to where you were.
+" jk is escape
+inoremap jk <esc>
+
+" Automatically fix the last misspelled word and jump back to where you were
 nnoremap <leader>w :normal! mz[s1z=`z<CR>`]
+
+" Proper clipboard sync
+" WSL yank support
+let s:clip = '/mnt/c/Windows/System32/clip.exe'
+if executable(s:clip)
+	augroup WSLYank
+		autocmd!
+		autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+	augroup END
+endif
