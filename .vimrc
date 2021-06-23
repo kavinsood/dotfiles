@@ -61,6 +61,8 @@ set shiftwidth=4
 set autoindent
 set smarttab
 set smartindent
+
+" Backup settings
 set backupdir=.backup/,~/.backup/,/tmp//
 set directory=.swp/,~/.swp/,/tmp//
 set undodir=.undo/,~/.undo/,/tmp//
@@ -93,7 +95,7 @@ let g:NERDTreeGitStatusUntrackedFilesMode = 'all'
 let g:NERDTreeGitStatusConcealBrackets = 1
 nnoremap <Leader>n :NERDTreeToggle<CR>
 
-" Coc.nvim
+" Coc.nvim make use of tab for all completion
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -107,7 +109,7 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 " Keybindings
-" Open todo file
+" Open todolist
 nnoremap <Leader>q :e /mnt/c/Users/money/School/text/myplan.txt <CR>
 
 " Toggle spell check
