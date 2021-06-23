@@ -15,17 +15,16 @@ Plug 'uiiaoo/java-syntax.vim'
 Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Colorschemes
-Plug 'morhetz/gruvbox'
+Plug 'lifepillar/gruvbox8'
 Plug 'joshdick/onedark.vim'
 call plug#end()
-"set rtp+=~/tabnine-vim
 
 " Colorscheme
 set termguicolors
 syntax on
 let g:gruvbox_contrast_dark='hard'
 set background=dark
-colorscheme gruvbox
+colorscheme gruvbox8
 set cursorline
 
 " General settings
@@ -108,8 +107,8 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 " Keybindings
-" Open a buffer for scribble
-nnoremap <Leader>q :e /mnt/c/users/money/school/text/buffer.txt <CR>
+" Open todo file
+nnoremap <Leader>q :e /mnt/c/Users/money/School/text/myplan.txt <CR>
 
 " Toggle spell check
 nnoremap <Leader>sp <C-\><C-O>:setlocal spelllang=en_us spell! spell?<CR>
