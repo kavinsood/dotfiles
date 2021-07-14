@@ -1,0 +1,42 @@
+get the iso
+make bootable usb
+ls /sys/firmware/efi/efivars
+iwctl
+station wlan0 connect <wifi name>
+<enter wifi password>
+ping -c 5 youtube.com
+timedatectl set-ntp true
+cfdisk
+<make root partition and swap partition>
+mkswap /dev/sda<swap_number>
+swapon /dev/sda<swap_number>
+mkfs.etx4 /dev/sda<root_number>
+mount /dev/sda<root_number> /mnt
+mkdir /mnt/efi
+mount /dev/sda<efi_partition> /mnt/efi
+pacstrap /mnt base base-devel linux linux-firmware vim networkmanager
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+hwclock --systohc
+uncomment en_US.UTF-8 UTF-8 in /etc/locale.gen
+locale-gen
+echo LANG=en_US.UTF-8 >> /etc/locale.conf
+echo <myhostname> /etc/hostname
+open /etc/hosts, paste
+127.0.0.1	localhost
+::1		localhost
+127.0.1.1	myhostname.localdomain	myhostname
+passwd
+<setup root passwd>
+useradd -m -G wheel,audio,video <username>
+passwd <username>
+<setup user passwd>
+visudo
+uncomment wheel group line
+pacman -S grub efibootmgr os-prober
+vim /etc/default/grub and put GRUB_DISABLE_OS_PROBER=false
+grub-install --target=x86_64-efi --efi-directory=/efi/ --bootloader-id=grub
+grub-mkconfig -o /boot/grub/grub.cfg
+exit
+reboot
