@@ -68,6 +68,7 @@ set foldenable
 set mouse+=a
 autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o
 set spelllang=en_us
+set clipboard+=unnamedplus
 
 " Split settings
 set splitright
@@ -115,6 +116,11 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 let g:coc_snippet_next = '<tab>'
+
+" Vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_powerline_fonts = 1
 
 " Keybindings
 " Toggle spell check

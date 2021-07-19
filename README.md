@@ -9,4 +9,4 @@ Requirements:
 * Nodejs version >= v14, npm, `npm install -g neovim'
 * [Vim-plug](https://github.com/junegunn/vim-plug) for plugins
 
-Clone this repo and run `nvimScript.sh`. 
+Clone this repo and run `nvimScript.sh`.
