@@ -53,9 +53,9 @@ set undofile
 " General settings
 set title
 set encoding=utf8
-set nu rnu " Hybrid line numbers
-set incsearch " Better search
-set hlsearch " Highlight results
+set nu rnu
+set incsearch
+set hlsearch
 set ignorecase
 set backspace=eol,start,indent
 set showmatch
