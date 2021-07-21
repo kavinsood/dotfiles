@@ -68,7 +68,6 @@ set foldenable
 set mouse+=a
 autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o
 set spelllang=en_us
-set clipboard+=unnamedplus
 
 " Split settings
 set splitright
@@ -86,12 +85,24 @@ map vv <C-W>v
 map ss <C-W>s
 map Q  <C-W>q
 
-" Status bar settings
-set laststatus=0
-set cmdheight=1
-set noshowmode
-set noruler
-set shortmess+=c
+" Clipboard settings
+set clipboard=unnamedplus
+
+" Remap 'c', 'C', 'd', 'D', 'x' and 'X' to save text in a custom register
+nnoremap c "cc
+vnoremap c "cc
+nnoremap C "cC
+vnoremap C "cC
+
+nnoremap d "dd
+vnoremap d "dd  
+nnoremap D "dD
+vnoremap D "dD
+
+nnoremap x "xx
+vnoremap x "xx
+nnoremap X "xX
+vnoremap X "xX
 
 " Plugins configuration
 " NERDTree
@@ -118,6 +129,11 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 " Vim-airline
+set laststatus=0
+set cmdheight=1
+set noshowmode
+set noruler
+set shortmess+=c
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 1
