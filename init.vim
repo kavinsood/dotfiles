@@ -30,6 +30,7 @@ let mapleader=" "
 set wildmenu
 set mouse+=a
 set clipboard=unnamedplus
+highlight link javaIdentifier NONE
 
 " Indenting
 set tabstop=4
