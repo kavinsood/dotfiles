@@ -1,12 +1,9 @@
 # dotfiles
 
-## For Neovim,
-
-Requirements:
+# For Neovim,
 * [Neovim](https://github.com/neovim/neovim) version >= 0.5.0
-* [Nerd Fonts](https://www.nerdfonts.com/)
-* Python3, pip, `pip3 install pynvim`
-* Nodejs version >= v14, npm, `npm install -g neovim`
-* [Vim-plug](https://github.com/junegunn/vim-plug) for plugins
+* Python3, pip, `pip install pynvim`
+* Nodejs, npm, `npm install -g neovim`
+* [Vim-plug](https://github.com/junegunn/vim-plug)
 
-Clone this repo and run `nvimScript.sh`.
+Download this repo and run `script.ps1` if you are on Windows.
