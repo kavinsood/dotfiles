@@ -1,16 +1,13 @@
 " Plugins
 call plug#begin()
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'uiiaoo/java-syntax.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'joshdick/onedark.vim'
 call plug#end()
 
@@ -33,18 +30,8 @@ set list lcs=tab:\|\
 autocmd FocusLost * :w<CR>
 set undofile
 
-" Splits
-set splitright
-set splitbelow
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-nnoremap <S-Tab> <C-w>w
-nnoremap vv <C-W>v
-nnoremap ss <C-W>s
-
 " General
+set title
 set encoding=utf8
 set number relativenumber
 set incsearch
@@ -56,32 +43,47 @@ set wildmenu
 set noerrorbells
 set mouse+=a
 set backspace=eol,start,indent
-let mapleader=" "
 set clipboard=unnamedplus
-highlight link javaIndentifier NONE
 autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o
+let mapleader=" "
+highlight link javaIdentifier NONE
+set laststatus=0
+set cmdheight=1
+
+" Splits
+set splitright
+set splitbelow
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 " Mappings
-nnoremap <Leader>j :cd ~\Documents\javaC0de<CR>
-nnoremap <Leader>q :e ~\Dropbox\Text\buffer<CR>
+nnoremap <Leader>q :e C:\Users\kavin\Onedrive\Text\buffer<CR>
 nnoremap <Leader>n :NERDTreeToggle<CR>
-nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <Leader>ev :e $MYVIMRC<CR>
 autocmd Filetype java set makeprg=javac\ %
 set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 nnoremap <Leader>c :make<Return>:copen<Return>
 nnoremap <Leader>m :cprevious<Return>
 nnoremap <Leader>r :!java %:t:r<CR>
 
-" Plugins
-let g:airline_powerline_fonts = 1
+" Tab autocomplete
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+let g:coc_snippet_next = '<tab>'
+
+" Status bar
 set laststatus=0
 set cmdheight=1
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeGitStatusUseNerdFonts = 1
-let g:NERDTreeGitStatusUntrackedFilesMode = 'all'
-let g:NERDTreeGitStatusConcealBrackets = 1
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
+
+" NERDTree
+let NERDTreeShowHidden = 1
+let NERDTREEMinimalUI = 1
