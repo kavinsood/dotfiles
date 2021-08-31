@@ -1,7 +1,9 @@
 # dotfiles
 
-# For Neovim,
-* [Neovim](https://github.com/neovim/neovim) version >= 0.5.0
-* [Vim-plug](https://github.com/junegunn/vim-plug) for plugins
-* A good terminal
-* Nerd Fonts
+## For Neovim
+Requirements: 
+* Nvim version `>= 0.5`
+* Python3, pip3, `pip3 install pynvim`
+* Nodejs, npm, `npm install -g neovim`
+* A good terminal with true color and ligatures.
+* A nerd font
