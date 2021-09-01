@@ -34,6 +34,7 @@ syntax on
 set cursorline
 colorscheme onedark
 let g:onedark_terminal_italics=1
+let g:onedark_hide_endofbuffer=1
 
 " Indenting
 set tabstop=4
@@ -89,3 +90,4 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 let g:coc_snippet_next = '<tab>'
+
