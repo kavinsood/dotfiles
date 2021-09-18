@@ -35,6 +35,7 @@ autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=
 set backspace=eol,start,indent
 highlight link javaIdentifier NONE
 let mapleader=" "
+set clipboard=unnamedplus
 
 " Colorscheme
 set termguicolors
