@@ -1,12 +1,12 @@
 " Plugins
 call plug#begin()
-" Fuzzy finder
-Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-" File Browser
+" File browser
 Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
+" Finder
+Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " Status Bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -14,12 +14,16 @@ Plug 'tpope/vim-fugitive'
 " Code
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
+Plug 'preservim/nerdcommenter'
+Plug 'jiangmiao/auto-pairs'
+Plug 'frazrepo/vim-rainbow'
 Plug 'uiiaoo/java-syntax.vim'
 " Colorschemes
 Plug 'joshdick/onedark.vim'
 call plug#end()
 
 " General
+set encoding=utf8
 set title
 set number relativenumber
 set encoding=utf8
@@ -33,9 +37,9 @@ set wildmenu
 set mouse+=a
 autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o
 set backspace=eol,start,indent
-highlight link javaIdentifier NONE
-let mapleader=" "
 set clipboard=unnamedplus
+let mapleader=" "
+highlight link javaIdentifier NONE
 
 " Colorscheme
 set termguicolors
@@ -53,12 +57,7 @@ set smartindent
 set list lcs=tab:\|\ 
 
 " Backup
-set backupdir=~/.config/nvim/.backup
-set directory=~/.config/nvim/.swp
-set undodir=~/.config/nvim/.undo
-set backup
-set writebackup
-set swapfile
+autocmd FocusLost * :w<CR>
 set undofile
 
 " Splits
@@ -72,11 +71,7 @@ nnoremap vv <C-W>v
 nnoremap ss <C-W>s
 
 " Mappings
-" Spell Check
-nnoremap <Leader>sp <C-\><C-O>:setlocal spelllang=en_us spell! spell?<CR>
-set complete+=kspell
-
-" Compile and run java files
+" Compile and Run Java
 autocmd Filetype java set makeprg=javac\ %
 set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 nnoremap <Leader>c :make<Return>:copen<Return>
@@ -85,9 +80,6 @@ nnoremap <Leader>r :!java %:t:r<CR>
 
 " Turn off search highlight
 nnoremap <Leader><space> :nohlsearch<CR>
-
-" Edit Nvim Config
-nnoremap <Leader>ev :e $MYVIMRC<CR>
 
 " FZF
 nnoremap <Leader>f :FZF<CR>
@@ -98,13 +90,30 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 " Toggle line numbers
 nnoremap <Leader>l :setinvrelativenumber<CR>
 
-" Navigate to Code Directory
-" TODO
+" Code Directory
+nnoremap <Leader>j :cd C:\Users\money\GitHub\javaC0de<CR>
 
-" Open a buffer for scribble
-" TODO
+" Open buffer
+nnoremap <Leader>q :e C:\Users\money\OneDrive\Text\buffer.txt<CR>
+
+" Open Nvim Config
+nnoremap <Leader>ev :e $MYVIMRC<CR>
 
 " Plugin Config
+" Airline
+set laststatus=0
+set cmdheight=1
+let g:airline_powerline_fonts = 1
+
+" NERDTree
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:NERDTreeGitStatusUntrackedFilesMode = 'all'
+let g:NERDTreeGitStatusConcealBrackets = 1
+
 " Coc.nvim
 inoremap <silent><expr> <TAB>
 			\ pumvisible() ? coc#_select_confirm() :
@@ -118,16 +127,5 @@ function! s:check_back_space() abort
 endfunction
 let g:coc_snippet_next = '<tab>'
 
-" NERDTree
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeGitStatusUseNerdFonts = 1
-let g:NERDTreeGitStatusUntrackedFilesMode = 'all'
-let g:NERDTreeGitStatusConcealBrackets = 1
-
-" Airline
-set laststatus=0
-set cmdheight=1
-let g:airline_powerline_fonts = 1
+" Rainbow brackets
+let g:rainbow_active = 1
