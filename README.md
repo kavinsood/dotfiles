@@ -7,4 +7,4 @@
 * Terminal with true color and ligatures. I use [Windows Terminal](https://github.com/microsoft/terminal)
 * [Nerd fonts](https://github.com/ryanoasis/nerd-fonts)
 * [Vim plug](https://github.com/junegunn/vim-plug) for plugins
-* `:CocInstall <coc plugins>`
+* `:CocInstall coc-snippets coc-java`
