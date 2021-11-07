@@ -1,0 +1,23 @@
+{
+	"name" : "Onedark",
+	"cursorColor": "#FFFFFF",
+	"selectionBackground": "#FFFFFF",
+	"background" : "#282c34",
+	"foreground" : "#CCCCCC",
+	"black" : "#0C0C0C",
+	"blue" : "#61afef",
+	"cyan" : "#56b6c2",
+	"green" : "#98c379",
+	"purple" : "#c678dd",
+	"red" : "#e06c75",
+	"white" : "#CCCCCC",
+	"yellow" : "#e5c07b",
+	"brightBlack" : "#abb2bf",
+	"brightBlue" : "#3B78FF",
+	"brightCyan" : "#61D6D6",
+	"brightGreen" : "#16C60C",
+	"brightPurple" : "#B4009E",
+	"brightRed" : "#E74856",
+	"brightWhite" : "#F2F2F2",
+	"brightYellow" : "#F9F1A5"
+}
