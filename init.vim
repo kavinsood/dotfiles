@@ -1,19 +1,10 @@
 " Plugins
 call plug#begin()
-" File browser
 Plug 'preservim/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
-" Finder
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Status Bar
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-fugitive'
-" Colorschemes
 Plug 'joshdick/onedark.vim'
-" Code
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
@@ -23,13 +14,9 @@ call plug#end()
 " General
 set encoding=utf8
 set title
-set number relativenumber
-set encoding=utf8
 set incsearch
 set hlsearch
 set ignorecase
-set showmatch
-set showcmd
 set noerrorbells
 set wildmenu
 set mouse+=a
@@ -38,21 +25,28 @@ set backspace=eol,start,indent
 set clipboard=unnamedplus
 let mapleader=" "
 highlight link javaIdentifier NONE
+set fillchars=fold:\ ,vert:\???,eob:\ ,msgsep:???
+set shm+=I
 
-" Colorscheme
+" Appearance
 set termguicolors
 syntax on
-set cursorline
-colorscheme onedark
 let g:onedark_terminal_italics=1
 let g:onedark_hide_endofbuffer=1
+colorscheme onedark
+hi Normal guibg=NONE ctermbg=NONE
+set laststatus=0
+set noshowmode
+set noruler
+set lines+=1
+let s:hidden_all=1
+set noshowcmd
 
 " Indenting
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set smartindent
-set list lcs=tab:\|\ 
 
 " Backup
 set undofile
@@ -88,7 +82,7 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>l :setinvrelativenumber<CR>
 
 " Code Directory
-nnoremap <Leader>j :cd C:\Users\money\GitHub\javaC0de<CR>
+" todo
 
 " Open buffer
 nnoremap <Leader>q :e C:\Users\money\OneDrive\Text\buffer.txt<CR>
@@ -97,11 +91,6 @@ nnoremap <Leader>q :e C:\Users\money\OneDrive\Text\buffer.txt<CR>
 nnoremap <Leader>ev :e $MYVIMRC<CR>
 
 " Plugin Config
-" Airline
-set laststatus=0
-set cmdheight=1
-let g:airline_powerline_fonts = 1
-
 " NERDTree
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
