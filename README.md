@@ -9,5 +9,7 @@
 * [Vim plug](https://github.com/junegunn/vim-plug)
 * `CocInstall coc-snippets coc-java coc-python`
 
+
 ![neofetch](Pictures/neofetch.png)
+
 ![nvim](Pictures/fzf.png)
