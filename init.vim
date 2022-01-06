@@ -86,7 +86,7 @@ nnoremap <Leader>f :FZF<CR>
 nnoremap <Leader>n :NERDTreeToggle<CR>
 
 " Code Directory
-nnoremap <Leader>j :cd ~\IdeaProjects\javaC0de\src\<CR>
+nnoremap <Leader>j :cd ~/javaC0de <CR>
 
 " Open buffer
 nnoremap <Leader>q :e ~\OneDrive\Text\buffer.txt<CR>
