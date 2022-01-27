@@ -1,23 +1,18 @@
 " Plugins
 call plug#begin()
-" File browser
 Plug 'preservim/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
-" Finder
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Status Bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
-" Colorschemes
-Plug 'joshdick/onedark.vim'
-" Code
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'uiiaoo/java-syntax.vim'
+Plug 'ghifarit53/tokyonight-vim'
+Plug 'tiagovla/tokyodark.nvim'
 call plug#end()
 
 " General
@@ -38,15 +33,17 @@ set backspace=eol,start,indent
 set clipboard=unnamedplus
 let mapleader=" "
 highlight link javaIdentifier NONE
-set shm+=I
 
-" Colorschemes
+
+" Appearance
 set termguicolors
 syntax on
-set cursorline
-let g:onedark_hide_endofbuffer=1
-let g:onedark_terminal_italics=1
-colorscheme onedark
+let g:tokyodark_transparent_background = 1
+let g:tokyodark_enable_italic_comment = 1
+let g:tokyodark_enable_italic = 1
+let g:tokyodark_color_gamma = "1.0"
+colorscheme tokyodark
+let g:airline_theme = "tokyonight"
 
 " Indenting
 set tabstop=4
@@ -86,7 +83,7 @@ nnoremap <Leader>f :FZF<CR>
 nnoremap <Leader>n :NERDTreeToggle<CR>
 
 " Code Directory
-nnoremap <Leader>j :cd ~/javaC0de <CR>
+" TODO 
 
 " Open buffer
 nnoremap <Leader>q :e ~\OneDrive\Text\buffer.txt<CR>
@@ -94,7 +91,7 @@ nnoremap <Leader>q :e ~\OneDrive\Text\buffer.txt<CR>
 " Open Nvim Config
 nnoremap <Leader>ev :e $MYVIMRC<CR>
 
-" Plugin Config
+" Plugins
 " Airline
 set laststatus=0
 set cmdheight=1
