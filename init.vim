@@ -34,7 +34,6 @@ set clipboard=unnamedplus
 let mapleader=" "
 highlight link javaIdentifier NONE
 
-
 " Appearance
 set termguicolors
 syntax on
