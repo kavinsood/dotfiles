@@ -7,4 +7,4 @@
 * Terminal with true colors and ligatures like [Windows Terminal](github.com/microsoft/terminal)
 * [Nerd fonts](https://github.com/ryanoasis/nerd-fonts)
 * [Vim plug](https://github.com/junegunn/vim-plug)
-* `[CocInstall](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions) coc-snippets coc-java coc-python`
+* [`CocInstall`](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions) `coc-snippets coc-java coc-python`
