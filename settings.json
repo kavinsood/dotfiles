@@ -1,0 +1,97 @@
+{
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions":
+    [
+        {
+            "command": 
+            { 
+            	"action": "copy",
+                "singleLine": false
+            },
+            "keys": "ctrl+c"
+        },
+        {
+            "command": "paste",
+            "keys": "ctrl+v"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
+        }
+    ],
+    "copyFormatting": "none",
+    "copyOnSelect": false,
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "profiles":
+    {
+        "defaults": 
+        {
+            "useAcrylic": true,
+            "acrylicOpacity": 0.675,
+            "bellStyle": "none",
+            "fontFace": "Delugia",
+            "fontSize": 12,
+            "colorScheme": "Onedark",
+            "scrollbarState": "hidden",
+            "padding": "0, 0, 0, 0"    
+        },
+        "list": 
+        [
+            {
+                "name": "Windows PowerShell",
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "commandline": "powershell.exe -nologo",
+                "hidden": false
+                
+            },
+            {
+                "name": "Command Prompt",
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "commandline": "cmd.exe",
+                "hidden": false
+                
+            },
+            {
+                "name": "Azure Cloud Shell",
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",                
+                "source": "Windows.Terminal.Azure",
+                "hidden": true
+            }
+        ]
+    },
+    "schemes":
+    [
+        {
+            "name" : "Onedark",
+            "cursorColor": "#FFFFFF",
+            "selectionBackground": "#FFFFFF",
+            "background" : "#282c34",
+            "foreground" : "#CCCCCC",
+            "black" : "#0C0C0C",
+            "blue" : "#61afef",
+            "cyan" : "#56b6c2",
+            "green" : "#98c379",
+            "purple" : "#c678dd",
+            "red" : "#e06c75",
+            "white" : "#CCCCCC",
+            "yellow" : "#e5c07b",
+            "brightBlack" : "#abb2bf",
+            "brightBlue" : "#3B78FF",
+            "brightCyan" : "#61D6D6",
+            "brightGreen" : "#16C60C",
+            "brightPurple" : "#B4009E",
+            "brightRed" : "#E74856",
+            "brightWhite" : "#F2F2F2",
+            "brightYellow" : "#F9F1A5"
+        }
+    ]
+}
