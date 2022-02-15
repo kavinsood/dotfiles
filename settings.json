@@ -1,11 +1,11 @@
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions":
+    "actions": 
     [
         {
             "command": 
-            { 
-            	"action": "copy",
+            {
+                "action": "copy",
                 "singleLine": false
             },
             "keys": "ctrl+c"
@@ -31,67 +31,89 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "profiles":
+    "profiles": 
     {
         "defaults": 
         {
-            "useAcrylic": true,
-            "acrylicOpacity": 0.675,
+            "acrylicOpacity": 0.75,
             "bellStyle": "none",
-            "fontFace": "Delugia",
-            "fontSize": 12,
-            "colorScheme": "Onedark",
+            "colorScheme": "Gruvbox Dark",
+            "font": 
+            {
+                "face": "Delugia",
+                "size": 12
+            },
+            "padding": "0, 0, 0, 0",
             "scrollbarState": "hidden",
-            "padding": "0, 0, 0, 0"    
+            "useAcrylic": false
         },
         "list": 
         [
             {
-                "name": "Windows PowerShell",
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "commandline": "powershell.exe -nologo",
-                "hidden": false
-                
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
             },
             {
-                "name": "Command Prompt",
-                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "commandline": "cmd.exe",
-                "hidden": false
-                
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "Command Prompt"
             },
             {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": true,
                 "name": "Azure Cloud Shell",
-                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",                
-                "source": "Windows.Terminal.Azure",
-                "hidden": true
+                "source": "Windows.Terminal.Azure"
             }
         ]
     },
-    "schemes":
+    "schemes": 
     [
         {
-            "name" : "Onedark",
+            "background": "#282C34",
+            "black": "#0C0C0C",
+            "blue": "#61AFEF",
+            "brightBlack": "#ABB2BF",
+            "brightBlue": "#3B78FF",
+            "brightCyan": "#61D6D6",
+            "brightGreen": "#16C60C",
+            "brightPurple": "#B4009E",
+            "brightRed": "#E74856",
+            "brightWhite": "#F2F2F2",
+            "brightYellow": "#F9F1A5",
             "cursorColor": "#FFFFFF",
+            "cyan": "#56B6C2",
+            "foreground": "#CCCCCC",
+            "green": "#98C379",
+            "name": "Onedark",
+            "purple": "#C678DD",
+            "red": "#E06C75",
             "selectionBackground": "#FFFFFF",
-            "background" : "#282c34",
-            "foreground" : "#CCCCCC",
-            "black" : "#0C0C0C",
-            "blue" : "#61afef",
-            "cyan" : "#56b6c2",
-            "green" : "#98c379",
-            "purple" : "#c678dd",
-            "red" : "#e06c75",
-            "white" : "#CCCCCC",
-            "yellow" : "#e5c07b",
-            "brightBlack" : "#abb2bf",
-            "brightBlue" : "#3B78FF",
-            "brightCyan" : "#61D6D6",
-            "brightGreen" : "#16C60C",
-            "brightPurple" : "#B4009E",
-            "brightRed" : "#E74856",
-            "brightWhite" : "#F2F2F2",
-            "brightYellow" : "#F9F1A5"
-        }
+            "white": "#CCCCCC",
+            "yellow": "#E5C07B"
+        },
+        {
+            "background" : "#282828",
+            "black" : "#282828",
+            "blue" : "#458588",
+            "brightBlack" : "#928374",
+            "brightBlue" : "#83A598",
+            "brightCyan" : "#8EC07C",
+            "brightGreen" : "#B8BB26",
+            "brightPurple" : "#D3869B",
+            "brightRed" : "#FB4934",
+            "brightWhite" : "#EBDBB2",
+            "brightYellow" : "#FABD2F",
+            "cyan" : "#689D6A",
+            "foreground" : "#EBDBB2",
+            "green" : "#98971A",
+            "name" : "Gruvbox Dark",
+            "purple" : "#B16286",
+            "red" : "#CC241D",
+            "white" : "#A89984",
+            "yellow" : "#D79921"
+          }          
     ]
 }
