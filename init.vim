@@ -42,9 +42,10 @@ highlight link javaIdentifier NONE
 " Appearance
 set termguicolors
 syntax on
+set background="dark"
 colorscheme gruvbox
-set background=dark
-let g:airline_theme = "gruvbox"
+let g:gruvbox_italic=1
+let g:airline_theme="gruvbox"
 
 " Indenting
 set tabstop=4
