@@ -16,8 +16,6 @@ Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 " Appearance
 Plug 'morhetz/gruvbox'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'uiiaoo/java-syntax.vim'
 call plug#end()
 
@@ -25,24 +23,26 @@ call plug#end()
 set encoding=utf8
 set title
 set number relativenumber
-set incsearch
-set hlsearch
-set ignorecase
 set showmatch
 set showcmd
 set noerrorbells
 set wildmenu
 set mouse+=a
-autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o
+let mapleader=" "
 set backspace=eol,start,indent 
 set clipboard=unnamedplus
-let mapleader=" "
-highlight link javaIdentifier NONE
+
+" Search
+set incsearch
+set hlsearch
+set ignorecase
+
+" Disable auto comment in new line
+autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o
 
 " Appearance
 set termguicolors
 syntax on
-autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE
 let g:gruvbox_bold='1'
 let g:gruvbox_invert_indent_guides='1'
 let g:gruvbox_italic='1'
@@ -51,11 +51,19 @@ set background=dark
 colorscheme gruvbox
 let g:airline_theme="gruvbox"
 
+" Enable transparency
+autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE
+
+" Do not highlight identifiers in java
+highlight link javaIdentifier NONE
+
 " Indenting
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set smartindent
+
+" Show indent guide
 set list lcs=tab:\|\ 
 
 " Backup
@@ -96,10 +104,6 @@ nnoremap <Leader>q :e ~\OneDrive\Text\buffer.txt<CR>
 
 " Open Neovim Config
 nnoremap <Leader>ev :e $MYVIMRC<CR>
-
-" Toggle focus mode
-map <Leader>g :Goyo<CR>
-autocmd! USer GoyoEnter Limelight
 
 " Config
 " Airline 
