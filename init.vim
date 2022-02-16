@@ -1,15 +1,5 @@
 " Plugins
 call plug#begin()
-" Appearance
-Plug 'morhetz/gruvbox'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'uiiaoo/java-syntax.vim'
-" Code
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-fugitive'
-Plug 'honza/vim-snippets'
-Plug 'jiangmiao/auto-pairs'
 " File Explorer
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
@@ -19,6 +9,16 @@ Plug 'junegunn/fzf.vim'
 " Status Bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Code
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-fugitive'
+Plug 'honza/vim-snippets'
+Plug 'jiangmiao/auto-pairs'
+" Appearance
+Plug 'morhetz/gruvbox'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'uiiaoo/java-syntax.vim'
 call plug#end()
 
 " General
@@ -42,9 +42,13 @@ highlight link javaIdentifier NONE
 " Appearance
 set termguicolors
 syntax on
-set background="dark"
+autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE
+let g:gruvbox_bold='1'
+let g:gruvbox_invert_indent_guides='1'
+let g:gruvbox_italic='1'
+let g:gruvbox_transparent_bg='1'
+set background=dark
 colorscheme gruvbox
-let g:gruvbox_italic=1
 let g:airline_theme="gruvbox"
 
 " Indenting
