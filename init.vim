@@ -15,7 +15,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 " Appearance
-Plug 'morhetz/gruvbox'
+Plug 'shaunsingh/nord.nvim'
 Plug 'uiiaoo/java-syntax.vim'
 call plug#end()
 
@@ -43,13 +43,12 @@ autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=
 " Appearance
 set termguicolors
 syntax on
-let g:gruvbox_bold='1'
-let g:gruvbox_invert_indent_guides='1'
-let g:gruvbox_italic='1'
-let g:gruvbox_transparent_bg='1'
-set background=dark
-colorscheme gruvbox
-let g:airline_theme="gruvbox"
+let g:nord_contrast = v:true
+let g:nord_borders = v:false
+let g:nord_disable_background = v:true
+let g:nord_italic = v:false
+colorscheme nord
+let g:airline_theme="nord_minimal"
 
 " Enable transparency
 autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE
