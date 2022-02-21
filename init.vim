@@ -1,21 +1,16 @@
 " Plugins
 call plug#begin()
-" File Explorer
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-" Fuzzy Finder
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Status Bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Code
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
-" Appearance
-Plug 'shaunsingh/nord.nvim'
+Plug 'joshdick/onedark.vim'
 Plug 'uiiaoo/java-syntax.vim'
 call plug#end()
 
@@ -27,46 +22,38 @@ set showmatch
 set showcmd
 set noerrorbells
 set wildmenu
+set shortmess+=c
 set mouse+=a
 let mapleader=" "
 set backspace=eol,start,indent 
 set clipboard=unnamedplus
-
-" Search
 set incsearch
 set hlsearch
 set ignorecase
-
-" Disable auto comment in new line
 autocmd FileType * setlocal formatoptions -=c formatoptions -=r formatoptions -=o
+set undofile
 
 " Appearance
 set termguicolors
 syntax on
-let g:nord_contrast = v:true
-let g:nord_borders = v:false
-let g:nord_disable_background = v:true
-let g:nord_italic = v:false
-colorscheme nord
-let g:airline_theme="nord_minimal"
-
-" Enable transparency
+let g:onedark_hide_endofbuffer=1
+let g:onedark_termcolors=256
+let g:onedark_terminal_italics=1
+colorscheme onedark
+let g:airline_theme="onedark"
+highlight! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
 autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE
-
-" Do not highlight identifiers in java
 highlight link javaIdentifier NONE
+set laststatus=0
+set cmdheight=1
+let g:airline_powerline_fonts=1
 
 " Indenting
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set smartindent
-
-" Show indent guide
 set list lcs=tab:\|\ 
-
-" Backup
-set undofile
 
 " Splits
 set splitright
@@ -79,36 +66,17 @@ nnoremap vv <C-W>v
 nnoremap ss <C-W>s
 
 " Mappings
-" Compile and Run Java 
 autocmd Filetype java set makeprg=javac\ %
 set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 nnoremap <Leader>c :make<Return>:copen<Return>
 nnoremap <Leader>m :cprevious<Return>
 nnoremap <Leader>r :!java %:t:r<CR>
-
-" Turn off search highlights
 nnoremap <Leader><space> :nohlsearch<CR>
-
-" FZF
 nnoremap <Leader>f :FZF<CR>
-
-" NERDTree
 nnoremap <Leader>n :NERDTreeToggle<CR>
-
-" Code Directory
 nnoremap <Leader>j :cd ~\javaC0de<CR>
-
-" Open buffer for scribble
 nnoremap <Leader>q :e ~\OneDrive\Text\buffer.txt<CR>
-
-" Open Neovim Config
 nnoremap <Leader>ev :e $MYVIMRC<CR>
-
-" Config
-" Airline 
-set laststatus=0
-set cmdheight=1
-let g:airline_powerline_fonts = 1
 
 " NERDTree
 let NERDTreeShowHidden = 1
