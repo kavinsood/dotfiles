@@ -8,4 +8,6 @@ if (Test-Path .git -PathType Any) {
     git push > $null
     Write-Output "Done"
 }
-Write-Output "No git repo found."
+else {
+    Write-Output "No git repo found."
+}
