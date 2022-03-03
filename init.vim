@@ -1,3 +1,16 @@
+" Introducing a few new changes
+" ive recently reconsidered the whole neovim ide thing and felt like intellij might just be a better option for me
+" this is for a few reasons
+" i feel more productive with intellij's interface and find much less output in the terminal as a source of fiddling with my dotfiles
+" just get fiddly
+" and i feel like i do this way too much
+" cause there is such a niche category of poeple on the internet, forget the world who could appreciate anything like this
+" and even if they could appreciate it, who is sitting around with time on their hands looking at some random kids dotfiles
+" as ive settled happily with my programming journey on windows i feel happy with using nvim as a text editor.
+" its best suited for manipulating text
+" im mostly dealing with java for now so i feel much better using ide's for that
+" and im doing some changes to my stuff for now
+
 " Plugins
 call plug#begin()
 Plug 'preservim/nerdtree'
