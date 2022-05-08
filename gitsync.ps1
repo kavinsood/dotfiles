@@ -1,6 +1,7 @@
 # Syncs a github repository two way in a simple script
 # First check if the current directory is a git repo
-# if (Test-Path .git -PathType Any) {}
+# Add the folder containing this file to system variables for easy access
+
 if (Test-Path .git -PathType Any) {
     git pull
     git add -A

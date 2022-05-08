@@ -6,6 +6,4 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 # Aliases
 New-Alias open ii
 New-Alias l ls
-
-# New Prompt
-Invoke-Expression (&starship init powershell)
+Set-Alias winfetch pwshfetch-test-1
