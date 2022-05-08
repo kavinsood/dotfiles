@@ -13,5 +13,6 @@
 * [vim-plug](https://github.com/junegunn/vim-plug)
 * [`CocInstall coc-snippets coc-java coc-python`](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
 
+## Screenshots
 ![Windows](Pictures/Windows.png)
 ![Fedora](Pictures/Fedora.png)
