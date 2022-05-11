@@ -1,8 +1,8 @@
 # dotfiles
 ## specs
 * Intel i5-1135G7 28W, 16G DDR4 3200, 512GB NVME, Iris Xe + Nvidia MX450
-* Windows 11 + Fedora 35
-* Windows Terminal, Powershell Core / Kitty, ZSH + p10k
+* Windows 11 + Fedora 36
+* Windows Terminal, Powershell Core / gnome-terminal, ZSH
 
 ## neovim
 * [nvim](https://github.com/neovim/neovim) **>=0.7**
