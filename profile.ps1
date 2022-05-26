@@ -6,4 +6,3 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 # Aliases
 New-Alias open ii
 New-Alias l ls
-Set-Alias winfetch pwshfetch-test-1
