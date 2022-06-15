@@ -11,7 +11,7 @@
 * Terminal with true colors and ligature support
 * [nerdfonts](https://github.com/ryanoasis/nerd-fonts)
 * [vim-plug](https://github.com/junegunn/vim-plug)
-* [`CocInstall coc-snippets coc-java coc-python`](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
+* [`CocInstall coc-snippets coc-java`](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
 
 ## screenshots
 ![Windows](Pictures/Windows.png)
