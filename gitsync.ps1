@@ -17,5 +17,9 @@ if (Test-Path .git -PathType Any) {
         git add . 
         git commit -m "Files added on $(Get-date)"
         git push
+    } else {
+    	Write-Output "No changes found"
     }
+} else {
+    Write-Output "Git repository not initialised at current path"
 }
