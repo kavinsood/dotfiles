@@ -7,6 +7,8 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-Alias winfetch pwshfetch-test-1
 New-Alias open ii
 New-Alias l ls
+function googleSearch{Start-Process www.google.com/search?q=$args}
+Set-Alias g googleSearch
 
 # Starship Prompt
 Invoke-Expression (&starship init powershell)
