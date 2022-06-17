@@ -2,7 +2,7 @@
 ## specs
 * Intel i5-1135G7 28W, 16G DDR4 3200, 512GB NVME, Iris Xe + Nvidia MX450
 * Windows 11 + Fedora 36
-* Windows Terminal, Powershell Core, Starship / gnome-terminal, ZSH, p10k
+* [Windows Terminal](https://github.com/microsoft/terminal) + [PowerShell Core](https://github.com/PowerShell/PowerShell) + [Starship](https://github.com/starship/starship) / [gnome-terminal](https://gitlab.gnome.org/GNOME/gnome-terminal) + [zsh](https://ohmyz.sh/) + [p10k](https://github.com/romkatv/powerlevel10k)
 
 ## neovim
 * [nvim](https://github.com/neovim/neovim) **>=0.7**
