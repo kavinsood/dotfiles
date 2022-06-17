@@ -4,17 +4,17 @@
 if (Test-Path .git -PathType Any) {
     # Always commit before introducing external changes
     if("$(git status --porcelain)") {
-        git add .
-        git commit -m "Committing local changes before merge"
+        git add . --quiet
+        git commit -m "Committing local changes before merge" --quiet
         # Stash your local changes
-        git stash
+        git stash --quiet
         # Update the branch to the latest code
         git pull
         # Merge your local changes into the latest code
-        git stash apply
+        git stash apply --quiet
         # Add, commit and push local changes to branch
-        git add .
-        git commit -m "Files added on $(date)"
-        git push
+        git add . --quiet
+        git commit -m "Files added on $(date)" --quiet
+        git push --quiet
     }
 }
