@@ -1,14 +1,20 @@
-# Syncs a github repository two way in a simple script
+# Syncs a github repository two way in a simple script to run with one line
+# Add the folder containing this file to PATH for easy access
 # First check if the current directory is a git repo
-# Add the folder containing this file to system variables for easy access
-
 if (Test-Path .git -PathType Any) {
-    git pull
-    git add -A
-    git commit -m "Files added on $(Get-Date)"
-    git push
-    Write-Output "Done"
-}
-else {
-    Write-Output "No git repo found."
+    # Always commit before introducing external changes
+    if("$(git status --porcelain)") {
+        git add .
+        git commit -m "Committing local changes before merge"
+        # Stash your local changes
+        git stash
+        # Update the branch to the latest code
+        git pull --quiet
+        # Merge your local changes into the latest code
+        git stash apply
+        # Add, commit and push local changes to branch
+        git add .
+        git commit -m "Files added on $(date)"
+        git push
+    }
 }
