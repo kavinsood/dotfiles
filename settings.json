@@ -42,7 +42,9 @@
                 "size": 13
             },
             "padding": "0, 0, 0, 0",
-            "scrollbarState": "hidden"
+            "scrollbarState": "hidden",
+            "useAcrylic": true,
+            "opacity": 40
         },
         "list": [
             {

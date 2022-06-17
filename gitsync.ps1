@@ -9,7 +9,7 @@ if (Test-Path .git -PathType Any) {
         # Stash your local changes
         git stash
         # Update the branch to the latest code
-        git pull --quiet
+        git pull
         # Merge your local changes into the latest code
         git stash apply
         # Add, commit and push local changes to branch
