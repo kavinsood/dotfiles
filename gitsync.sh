@@ -11,5 +11,5 @@ git pull
 git stash apply
 # Add, commit and push local changes to branch
 git add . 
-git commit -m "Files added on $(Get-date)"
+git commit -m "Files added on $date"
 git push
