@@ -15,7 +15,7 @@ if (Test-Path .git -PathType Any) {
         git stash apply
         # Add, commit and push local changes to branch
         git add . 
-        git commit -m "Files added on $(Get-date)"
+        git commit -m "$(Get-date)"
         git push
     } else {
     	Write-Output "No changes found"
