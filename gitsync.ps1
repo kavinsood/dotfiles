@@ -6,7 +6,7 @@ if (Test-Path .git -PathType Any) {
     # Always commit before introducing external changes
     if("$(git status --porcelain)") {
         git add . 
-        git commit -m "Comitting local changes before merge"
+        git commit -m "$(Get-Date)"
         # Stash your local changes
         git stash
         # Update branch to latest code from remote server
