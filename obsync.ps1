@@ -8,7 +8,7 @@ cd ~/github/obsidian
 rm *
 
 # Move all files from onedrive into git repo
-cp ~/OneDrive/Obsidian/* .
+cp ~/OneDrive/Obsidian/*.* .
 
 # Add, commit and push local changes to branch
 git add . 
