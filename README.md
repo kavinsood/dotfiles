@@ -5,7 +5,7 @@
 * [Windows Terminal](https://github.com/microsoft/terminal) + [PowerShell Core](https://github.com/PowerShell/PowerShell) + [Starship](https://github.com/starship/starship) / [gnome-terminal](https://gitlab.gnome.org/GNOME/gnome-terminal) + [zsh](https://ohmyz.sh/) + [p10k](https://github.com/romkatv/powerlevel10k)
 
 ## neovim
-* [nvim](https://github.com/neovim/neovim) **>=0.7**
+* [nvim](https://github.com/neovim/neovim) 
 * [python3](https://python.org), pip3, `pip3 install pynvim`
 * [nodejs](https://nodejs.org), npm, `npm install -g neovim`
 * Terminal with true colors and ligature support
