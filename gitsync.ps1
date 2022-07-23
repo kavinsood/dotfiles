@@ -7,13 +7,13 @@ if (Test-Path .git -PathType Any) {
 	if("$(git status --porcelain)") {
 		git add . 
 			git commit -m "$(Get-Date)"
-# Stash your local changes
+			# Stash your local changes
 			git stash
-# Update branch to latest code from remote server
+			# Update branch to latest code from remote server
 			git pull
-# Merge your local changes into the latest code
+			# Merge your local changes into the latest code
 			git stash apply
-# Add, commit and push local changes to branch
+			# Add, commit and push local changes to branch
 			git add . 
 			git commit -m "$(Get-date)"
 			git push

@@ -45,7 +45,8 @@
 		"padding": "0, 0, 0, 0",
 		"scrollbarState": "hidden",
 		"useAcrylic": true,
-		"opacity": 60
+		"opacity": 60,
+		"colorScheme": "Gruvbox Dark"
         },
         "list": 
         [

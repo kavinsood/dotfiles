@@ -5,7 +5,9 @@ Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 " Appearance
 Plug 'joshdick/onedark.vim'
+Plug 'xiyaowong/nvim-transparent'
 " Status Bar
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Fuzzy Finder
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
@@ -28,6 +30,7 @@ let g:onedark_terminal_italics=1
 colorscheme onedark
 let g:airline_theme="onedark"
 let g:airline_powerline_fonts=1
+let g:transparent_enabled = v:true
 set shortmess=I
 set laststatus=0
 set cmdheight=1
