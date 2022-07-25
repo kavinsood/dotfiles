@@ -5,6 +5,7 @@ Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 " Appearance
 Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
 Plug 'xiyaowong/nvim-transparent'
 " Status Bar
 Plug 'vim-airline/vim-airline'
@@ -121,4 +122,5 @@ function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_next = '<tab>'" Plugins
+call plug#begin()
