@@ -8,7 +8,7 @@
 * [nvim](https://github.com/neovim/neovim) 
 * [python3](https://python.org), pip3, `pip3 install pynvim`
 * [nodejs](https://nodejs.org), npm, `npm install -g neovim`
-* Terminal with true colors and ligature support
+* Terminal with true color and ligature support
 * [nerdfonts](https://github.com/ryanoasis/nerd-fonts)
 * [vim-plug](https://github.com/junegunn/vim-plug)
 * [`CocInstall coc-snippets coc-java`](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
