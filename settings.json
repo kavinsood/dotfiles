@@ -75,7 +75,7 @@
                 "hidden": false,
                 "name": "PowerShell",
                 "source": "Windows.Terminal.PowershellCore"
-            },
+            }
         ]
     },
     "schemes": 
