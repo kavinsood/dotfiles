@@ -14,5 +14,5 @@
 * [`CocInstall coc-snippets coc-java`](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
 
 ## screenshots
-![Windows](Pictures/Windows.png)
+![Windows](Pictures/windows_dark.png)
 ![Fedora](Pictures/Fedora.png)
