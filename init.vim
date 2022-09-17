@@ -14,7 +14,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Snippets
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Code
 Plug 'jiangmiao/auto-pairs'
@@ -102,6 +101,9 @@ nnoremap <Leader>ev :e $MYVIMRC<CR>
 " Open search for buffers
 nnoremap <Leader>b :Buffers<CR>
 
+" Quick open terminal for code compilation
+nnoremap <Leader>t :vert term<CR>
+
 " Config
 " Nerdtree
 let NERDTreeShowHidden = 1
@@ -112,14 +114,15 @@ let g:NERDTreeGitStatusUseNerdFonts = 1
 let g:NERDTreeGitStatusUntrackedFilesMode = 'all'
 let g:NERDTreeGitStatusConcealBrackets = 1
 
-" Coc.nvim
+" Coc Nvim
 inoremap <silent><expr> <TAB>
-			\ pumvisible() ? coc#_select_confirm() :
-			\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-			\ <SID>check_back_space() ? "\<TAB>" :
-			\ coc#refresh()
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
+      \ coc#pum#visible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ CheckBackSpace() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! CheckBackSpace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 let g:coc_snippet_next = '<tab>'
