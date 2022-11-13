@@ -6,18 +6,20 @@ if (Test-Path .git -PathType Any) {
 # Always commit before introducing external changes
 
 	if("$(git status --porcelain)") {
+		# Pull from remote server
+		git pull
 		git add . 
-			git commit -m "$(Get-Date)"
-			# Stash your local changes
-			git stash
-			# Update branch to latest code from remote server
-			git pull
-			# Merge your local changes into the latest code
-			git stash apply
-			# Add, commit and push local changes to branch
-			git add . 
-			git commit -m "$(Get-date)"
-			git push
+		git commit -m "$(Get-Date)"
+		# Stash your local changes
+		git stash
+		# Update branch to latest code from remote server
+		git pull
+		# Merge your local changes into the latest code
+		git stash apply
+		# Add, commit and push local changes to branch
+		git add . 
+		git commit -m "$(Get-date)"
+		git push
 	} else {
 		Write-Output "No changes found"
 	}
