@@ -6,9 +6,8 @@ if (Test-Path .git -PathType Any) {
 # Always commit before introducing external changes
 
 	if("$(git status --porcelain)") {
-		# Pull from remote server
-		git pull
-		git add . 
+		# Add modified files and commit
+		git add .
 		git commit -m "$(Get-Date)"
 		# Stash your local changes
 		git stash
