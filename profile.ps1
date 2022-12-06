@@ -4,8 +4,8 @@ Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
 # Aliases
-New-Alias open ii
 New-Alias l ls
+New-Alias open ii
 function googleSearch{Start-Process www.google.com/search?q=$args}
 Set-Alias g googleSearch
 
