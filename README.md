@@ -25,8 +25,6 @@
 * [onedark](https://plugins.jetbrains.com/plugin/11938-one-dark-theme)
 
 ## screenshots
-![Linux](Pictures/Fedora.png)
-![Windows Light](Pictures/windows_light.png)
-![Windows Dark](Pictures/windows_dark.png)
+![Windows Space](Pictures/windows_space.png)
 ![Windows Darker](Pictures/windows_darker.png)
-![Windows Darkest](Pictures/windows_darkest.png)
+![Linux](Pictures/Fedora.png)
