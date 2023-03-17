@@ -10,7 +10,7 @@
 * Windows 11 Pro
 * [*Windows Terminal*](https://github.com/microsoft/terminal) + [*PowerShell Core*](https://github.com/PowerShell/PowerShell) + [*Starship*](https://github.com/starship/starship)
 
-## IDEs and Text Editors
+## ides and text editors
 ### neovim
 * [nvim](https://github.com/neovim/neovim) 
 * [python3](https://python.org), pip3, `pip3 install pynvim`
@@ -20,7 +20,7 @@
 * [vim-plug](https://github.com/junegunn/vim-plug)
 * [`CocInstall coc-snippets coc-java coc-python coc-rls coc-tsserver`](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
 
-### VSCode and IntelliJ
+### vscode and intellij
 * [github copilot](https://github.com/features/copilot)
 * [onedark](https://plugins.jetbrains.com/plugin/11938-one-dark-theme)
 
