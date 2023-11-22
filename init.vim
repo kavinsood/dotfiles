@@ -27,8 +27,8 @@ set termguicolors
 syntax on
 let g:onedark_hide_endofbuffer=1
 let g:onedark_terminal_italics=1
-colorscheme onedark
-let g:airline_theme="onedark"
+colorscheme gruvbox
+let g:airline_theme="gruvbox"
 let g:airline_powerline_fonts=1
 let g:transparent_enabled = v:true
 set shortmess=I
@@ -90,7 +90,7 @@ nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>n :NERDTreeToggle<CR>
 
 " Open code folder
-nnoremap <Leader>j :cd ~\Github\javaC0de<CR>
+nnoremap <Leader>j :cd ~\github\javaC0de<CR>
 
 " Open buffer for scribble
 nnoremap <Leader>q :e ~\OneDrive\Text\buffer.txt<CR>
@@ -113,16 +113,3 @@ let NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeGitStatusUseNerdFonts = 1
 let g:NERDTreeGitStatusUntrackedFilesMode = 'all'
 let g:NERDTreeGitStatusConcealBrackets = 1
-
-" Coc Nvim
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ CheckBackSpace() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! CheckBackSpace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-let g:coc_snippet_next = '<tab>'
