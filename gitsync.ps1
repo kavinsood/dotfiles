@@ -1,29 +1,56 @@
-# Syncs a github repository two way in a simple script to run with one line
-# Add the folder containing this file to PATH for easy access
-# First check if the current directory is a git repository
+param (
+    [Parameter(Mandatory=$true)]
+    [string]$commitMessage
+)
 
-if (Test-Path .git -PathType Any) {
-# Always commit before introducing external changes
-
-	if("$(git status --porcelain)") {
-		git add . 
-			git commit -m "$(Get-Date)"
-			# Stash your local changes
-			git stash
-			# Update branch to latest code from remote server
-			git pull
-			# Merge your local changes into the latest code
-			git stash apply
-			# Add, commit and push local changes to branch
-			git add . 
-			git commit -m "$(Get-date)"
-			git push
-	} else {
-		Write-Output "No changes found"
-	}
-	
-} else {
-	Write-Output "Git repository not initialised at current path"
-	
+# Check if the current directory is a Git repository
+if (-not (Test-Path .git -PathType Container)) {
+    Write-Error "Git repository not initialized at current path"
+    exit 1
 }
 
+# Check for uncommitted changes and commit them
+if (git status --porcelain) {
+    git add .
+    git commit -m "$commitMessage"
+}
+
+# Stash any remaining changes, including untracked files
+git stash --include-untracked
+
+# Pull latest changes from remote, rebase local commits
+$pullResult = git pull --rebase
+if ($LASTEXITCODE -ne 0) {
+    # Check for merge conflicts
+    $conflictFiles = git diff --name-only --diff-filter=U
+    if ($conflictFiles) {
+        Write-Output "Merge conflicts detected in the following files:"
+        Write-Output $conflictFiles
+        # Exit the script to allow manual conflict resolution
+        exit 1
+    } else {
+        Write-Error "Failed to pull latest changes from remote"
+        exit 1
+    }
+}
+
+# Apply stashed changes, if any
+if (git stash list) {
+    git stash pop --index
+    # Check for conflicts after applying the stash
+    if (git status --porcelain) {
+        git add .
+        git commit -m "$commitMessage"
+    } else {
+        Write-Output "No changes to commit after applying stash"
+    }
+}
+
+# Push local changes to remote
+git push
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "Failed to push local changes to remote"
+    exit 1
+}
+
+Write-Output "Git sync completed successfully"
