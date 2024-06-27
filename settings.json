@@ -40,13 +40,12 @@
             "bellStyle": "none",
             "font": 
             {
-                "face": "JetBrainsMono NF",
+                "face": "JetBrainsMono Nerd Font",
                 "size": 13
             },
             "opacity": 60,
-            "padding": "0, 0, 0, 0",
             "scrollbarState": "hidden",
-            "useAcrylic": true,
+            "padding": "0, 0, 0, -3",
             "colorScheme": "Onedark"
         },
         "list": 
