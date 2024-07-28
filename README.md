@@ -7,7 +7,6 @@
 - SK Hynix 512GB NVME 3.0
 - Intel Iris Xe + Nvidia MX450
 
-Test edit
 
 ## os and setup
 
@@ -17,7 +16,7 @@ Test edit
 ## ides and text editors
 
 ### neovim
-
+// I have switched to [lazy.vim](https://lazyvim.github.io/) now
 - [nvim](https://github.com/neovim/neovim)
 - [python3](https://python.org), pip3, `pip3 install pynvim`
 - [nodejs](https://nodejs.org), npm, `npm install -g neovim`
