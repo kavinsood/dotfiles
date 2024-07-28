@@ -32,6 +32,5 @@
 
 ## screenshots
 
-![Windows Space](Pictures/windows_space.png)
-![Windows Darker](Pictures/windows_darker.png)
 ![Linux](Pictures/Fedora.png)
+![Windows Space](Pictures/windows_space.png)
