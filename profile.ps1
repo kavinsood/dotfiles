@@ -1,3 +1,5 @@
+Import-Module 'gsudoModule'
+
 # Autocomplete
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
