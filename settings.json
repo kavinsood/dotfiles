@@ -27,6 +27,20 @@
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
+        },
+        {
+            "command":
+            {
+                "action": "closePane",
+            },
+            "keys": "alt+w"
+        },
+        {
+            "command":
+            {
+                "action": "toggleAlwaysOnTop"
+            },
+            "keys": "alt+shift+t"
         }
     ],
     "copyFormatting": "none",
@@ -73,7 +87,7 @@
                 "hidden": false,
                 "name": "PowerShell",
                 "source": "Windows.Terminal.PowershellCore",
-                "commandline": "C:/Program Files/PowerShell/7/pwsh.exe"
+                "commandline": "C:/Program Files/PowerShell/7/pwsh.exe -NoLogo"
             }
         ]
     },
