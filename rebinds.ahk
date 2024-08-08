@@ -1,10 +1,16 @@
-#Requires AutoHotKey 2.0
+#Required AutoHotKey 2.0
 #NoTrayIcon
 
 ; nvim
 CapsLock::Esc
+#M::
+{
+	if WinExist("ahk_exe Neovide.exe")
+	WinActivate
+	Else Run 'C:\Program Files\Neovide\neovide.exe'
+}
 
-; win shortcuts
+; win tiling
 #PgUp::#Up
 #PgDn::WinMinimize("A")
 
@@ -21,7 +27,7 @@ CapsLock::Esc
 {
 	If WinExist('ahk_exe Obsidian.exe')
 	WinActivate
-	Else Run 'C:\Program Files\Obsidian\Obsidian.exe'
+	Else Run 'C:\Users\kavin\AppData\Local\Programs\Obsidian\Obsidian.exe'
 }
 
 ; terminal
