@@ -1,5 +1,5 @@
-#Required AutoHotKey 2.0
 #NoTrayIcon
+#SingleInstance force
 
 ; nvim
 CapsLock::Esc
@@ -27,7 +27,7 @@ CapsLock::Esc
 {
 	If WinExist('ahk_exe Obsidian.exe')
 	WinActivate
-	Else Run 'C:\Users\kavin\AppData\Local\Programs\Obsidian\Obsidian.exe'
+	Else Run "C:\Users\kavin\AppData\Local\Programs\Obsidian\Obsidian.exe"
 }
 
 ; terminal
