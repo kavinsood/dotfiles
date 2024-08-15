@@ -1,8 +1,7 @@
 {
   "cssTheme": "Minimal",
-  "interfaceFontFamily": "Inter",
-  "textFontFamily": "Inter",
-  "monospaceFontFamily": "JetBrainsMono Nerd Font",
-  "showViewHeader": true,
+  "interfaceFontFamily": "CommitMono",
+  "textFontFamily": "CommitMono",
+  "monospaceFontFamily": "CommitMono",
   "theme": "obsidian"
 }

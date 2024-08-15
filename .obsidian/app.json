@@ -3,6 +3,5 @@
   "spellcheck": false,
   "promptDelete": false,
   "alwaysUpdateLinks": true,
-  "showRibbon": false,
-  "showInlineTitle": true
+  "showRibbon": false
 }

@@ -2,14 +2,11 @@
   "file-explorer",
   "global-search",
   "switcher",
-  "graph",
-  "backlink",
-  "tag-pane",
   "page-preview",
   "command-palette",
   "slash-command",
-  "bookmarks",
   "outline",
   "word-count",
+  "slides",
   "file-recovery"
 ]
