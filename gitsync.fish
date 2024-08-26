@@ -1,3 +1,4 @@
+#!/bin/fish
 function git-sync
     # Check if the commit message is provided
     if test (count $argv) -eq 0
