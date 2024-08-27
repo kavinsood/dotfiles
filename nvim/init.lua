@@ -32,6 +32,7 @@ vim.opt.listchars = { tab = '| ', trail = ' ' }
 vim.opt.termguicolors = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 
 -- Swap, Undo, Backup
 local state_path = vim.fn.expand("~/.local/state/nvim")
