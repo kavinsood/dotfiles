@@ -1,7 +1,7 @@
 -- General settings
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
 vim.opt.showmode = false
@@ -381,12 +381,16 @@ require('lazy').setup({
 	},
 
 	{
-		'ellisonleao/gruvbox.nvim',
-		priority = 1000,
-		config = true,
+		'folke/tokyonight.nvim',
+		priority = 1000, -- Make sure to load this before all the other start plugins.
 		init = function()
-			vim.o.background = "dark"
-			vim.cmd([[colorscheme gruvbox]])
+			-- Load the colorscheme here.
+			-- Like many other themes, this one has different styles, and you could load
+			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+			vim.cmd.colorscheme 'tokyonight-night'
+
+			-- You can configure highlights by doing something like:
+			vim.cmd.hi 'Comment gui=none'
 		end,
 	},
 
@@ -467,29 +471,16 @@ require('lazy').setup({
 	require 'kickstart.plugins.autopairs'
 
 })
--- Colorscheme options
-require("gruvbox").setup({
-	terminal_colors = true,
-	undercurl = true,
-	underline = true,
-	bold = true,
-	italic = {
-		strings = true,
-		emphasis = true,
-		comments = true,
-		operators = false,
-		folds = true,
-	},
-	strikethrough = true,
-	invert_selection = false,
-	invert_signs = false,
-	invert_tabline = false,
-	invert_intend_guides = false,
-	inverse = true,
-	contrast = "hard",
-	palette_overrides = {},
-	overrides = {},
-	dim_inactive = false,
-	transparent_mode = false,
-})
-vim.cmd("colorscheme gruvbox")
+
+-- Neovide Settings
+vim.g.neovide_fullscreen = true
+vim.g.neovide_floating_blur_amount_x = 4.0
+vim.g.floaterm_winblend = 15
+vim.g.neovide_floating_blur_amount_y = 4.0
+vim.g.neovide_remember_window_size = true
+vim.g.neovide_transparency = 1
+vim.g.neovide_cursor_animation_length = 0.13
+vim.g.neovide_cursor_trail_length = 0.8
+vim.g.neovide_cursor_vfx_mode = "railgun" -- Railgun particles behind cursor
+vim.g.neovide_cursor_vfx_opacity = 200.0
+vim.o.guifont = "CommitMono Nerd Font:h13"
