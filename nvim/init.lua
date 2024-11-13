@@ -35,13 +35,9 @@ vim.g.loaded_netrwPlugin = 1
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 
 -- Swap, Undo, Backup
-local state_path = vim.fn.expand("~/.local/state/nvim")
 vim.opt.swapfile = true
-vim.opt.directory = state_path .. "/swap//"
 vim.opt.undofile = true
-vim.opt.undodir = state_path .. "/undo//"
 vim.opt.backup = true
-vim.opt.backupdir = state_path .. "/backup//"
 vim.opt.shada = "!,h,'1000,<1000,s128,/1000,:1000,@1000"
 
 -- Keymaps
@@ -468,15 +464,6 @@ require('lazy').setup({
 			require("nvim-tree").setup {}
 		end,
 	},
-	{
-		"startup-nvim/startup.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim" },
-		config = function()
-			require "startup".setup({ theme = "evil" })
-		end
-	},
-	require 'kickstart.plugins.autopairs'
-
 })
 
 -- Neovide Settings
