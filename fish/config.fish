@@ -5,7 +5,8 @@ end
 set -g fish_greeting
 
 # Alias for 'open' command
-alias open="xdg-open"
+alias ii="xdg-open"
+alias l="ls"
 
 # Function for Google search
 function g
@@ -19,4 +20,13 @@ function p
     open "https://www.perplexity.ai/search?q=$search_query"
 end
 
+# Set PNPM_HOME
+set -x PNPM_HOME "/home/kavin/.local/share/pnpm"
 
+# Check if PNPM_HOME is already in PATH
+if not contains $PNPM_HOME $PATH
+    # Prepend PNPM_HOME to PATH
+    set -x PATH $PNPM_HOME $PATH
+end
+
+export EDITOR=nvim
