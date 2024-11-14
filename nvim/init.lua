@@ -34,11 +34,43 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 
--- Swap, Undo, Backup
-vim.opt.swapfile = true
-vim.opt.undofile = true
+-- Enable backup files
 vim.opt.backup = true
+
+-- Set backup file directory
+vim.opt.backupdir = os.getenv("HOME") .. "/.local/state/nvim/backup//"
+
+-- Enable swap files
+vim.opt.swapfile = true
+
+-- Set swap file directory
+vim.opt.directory = os.getenv("HOME") .. "/.local/state/nvim/swap//"
+
+-- Enable undo files
+vim.opt.undofile = true
+
+-- Set undo file directory
+vim.opt.undodir = os.getenv("HOME") .. "/.local/state/nvim/undo//"
+
+-- Create directories if they don't exist
+local function ensure_dir(path)
+	if vim.fn.isdirectory(path) == 0 then
+		vim.fn.mkdir(path, "p")
+	end
+end
+
+-- Pass strings directly to ensure_dir
+ensure_dir(os.getenv("HOME") .. "/.local/state/nvim/backup/")
+ensure_dir(os.getenv("HOME") .. "/.local/state/nvim/swap/")
+ensure_dir(os.getenv("HOME") .. "/.local/state/nvim/undo/")
+
+-- Keep shada settings
 vim.opt.shada = "!,h,'1000,<1000,s128,/1000,:1000,@1000"
+
+-- Optional: Additional backup settings
+vim.opt.backupext = ".bak"
+vim.opt.writebackup = true
+vim.opt.backupskip = { "*.tmp", "*.bak" }
 
 -- Keymaps
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -477,4 +509,4 @@ vim.g.neovide_cursor_animation_length = 0.13
 vim.g.neovide_cursor_trail_length = 0.8
 vim.g.neovide_cursor_vfx_mode = "railgun" -- Railgun particles behind cursor
 vim.g.neovide_cursor_vfx_opacity = 200.0
-vim.o.guifont = "CommitMono Nerd Font:h13"
+vim.o.guifont = "CommitMono Nerd Font:h12"
