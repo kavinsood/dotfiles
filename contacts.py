@@ -7,10 +7,20 @@ import re
 # assumes four year degree
 def increment_year(match):
     year = int(match.group(1))
+    # Preserve the original suffix if it exists
+    suffix = match.group(2) if len(match.groups()) > 1 else ""
+    
     if year == 4:
         return "Alumni"
-    suffix = match.group(2) if len(match.groups()) > 1 else ""
-    return f"{year + 1}{suffix}"
+    
+    # Map ordinal suffixes correctly
+    ordinal_suffixes = {1: "st", 2: "nd", 3: "rd"}
+    if suffix and suffix.lower() in ['st', 'nd', 'rd', 'th']:
+        new_suffix = ordinal_suffixes.get(year + 1, "th")
+    else:
+        new_suffix = suffix
+    
+    return f"{year + 1}{new_suffix}"
 
 # regex patterns to increment college year
 def update_contact_year(name):

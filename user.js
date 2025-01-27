@@ -202,7 +202,6 @@ user_pref("gfx.font_rendering.cleartype_params.gamma", 1750);
 user_pref("gfx.font_rendering.cleartype_params.enhanced_contrast", 100);
 user_pref("gfx.font_rendering.cleartype_params.pixel_structure", 1);
 
-
 /** COOKIE BANNER HANDLING ***/
 user_pref("cookiebanners.service.mode", 1);
 user_pref("cookiebanners.service.mode.privateBrowsing", 1);
