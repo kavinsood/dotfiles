@@ -4,4 +4,3 @@
 - neovim
 - fish
 
-![arch](arch.png)

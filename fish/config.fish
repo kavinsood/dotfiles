@@ -1,12 +1,23 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
+	nitch++ -c
 end
 
 set -g fish_greeting
 
 # Alias for 'open' command
 alias ii="xdg-open"
-alias l="ls"
+alias l="eza"
+alias ls="eza"
+
+# Function for sudo nvim
+function sudo
+    if test "$argv" = "nvim"
+        command sudo -E nvim
+    else
+        command sudo $argv
+    end
+end
 
 # Function for Google search
 function g
@@ -24,9 +35,12 @@ end
 set -x PNPM_HOME "/home/kavin/.local/share/pnpm"
 
 # Check if PNPM_HOME is already in PATH
-if not contains $PNPM_HOME $PATH
+if not contains $PATH $PNPM_HOME
     # Prepend PNPM_HOME to PATH
-    set -x PATH $PNPM_HOME $PATH
+    set -x PATH $PATH $PNPM_HOME
 end
 
-export EDITOR=nvim
+fish_add_path /home/kavin/.npm-global/bin
+
+set -gx EDITOR nvim
+starship init fish | source
