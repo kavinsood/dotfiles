@@ -1,6 +1,7 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
-	nitch++ -c
+    and not set -q __nitch_ran
+    nitch++
+    set -g __nitch_ran 1
 end
 
 set -g fish_greeting
