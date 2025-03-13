@@ -1,27 +1,16 @@
 {
-  "terminal.integrated.enableMultiLinePasteWarning": false,
-  "explorer.confirmDragAndDrop": false,
-  "github.copilot.enable": {
-    "*": true,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
-  },
-  "explorer.confirmDelete": false,
-  "editor.fontFamily": "JetBrainsMono Nerd Font",
-  "github.copilot.editor.enableAutoCompletions": true,
-  "liveServer.settings.donotShowInfoMsg": true,
-  "editor.unicodeHighlight.allowedCharacters": {
-    " ": true
-  },
-  "workbench.sideBar.location": "right",
-  "files.autoSave": "onFocusChange",
-  "workbench.colorTheme": "Tokyo Night",
-  "git.openRepositoryInParentFolders": "never",
-  "workbench.startupEditor": "none",
-  "security.workspace.trust.untrustedFiles": "open",
-    "telemetry.telemetryLevel": "off",
-    "window.customMenuBarAltFocus": false,
-    "window.menuBarVisibility": "toggle",
-    "workbench.colorTheme": "Tokyo Night"
+	"terminal.integrated.enableMultiLinePasteWarning": "never",
+	"explorer.confirmDragAndDrop": false,
+	"explorer.confirmDelete": false,
+	"editor.fontFamily": "RecMonoLinear Nerd Font Mono",
+	"editor.unicodeHighlight.allowedCharacters": {
+		" ": true
+	},
+	"workbench.sideBar.location": "right",
+	"files.autoSave": "onFocusChange",
+	"git.openRepositoryInParentFolders": "never",
+	"security.workspace.trust.untrustedFiles": "open",
+	"workbench.layoutControl.enabled": false,
+	"window.titleBarStyle": "custom",
+	"workbench.colorTheme": "Gruvbox Dark Medium",
 }

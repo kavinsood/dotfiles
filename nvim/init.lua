@@ -415,14 +415,17 @@ require('lazy').setup({
 	},
 
 
+	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
+
 	-- Color Scheme
 	{
 		"olimorris/onedarkpro.nvim",
 		priority = 1000, -- Ensure it loads first
+		--[[
 		config = function()
 			vim.o.background = "dark"
 			vim.cmd("colorscheme onedark")
-		end
+		end ]]
 	},
 
 	-- Highlight todo, notes, etc in comments
@@ -512,4 +515,35 @@ vim.g.neovide_cursor_animation_length = 0.13
 vim.g.neovide_cursor_trail_length = 0.8
 vim.g.neovide_cursor_vfx_mode = "railgun" -- Railgun particles behind cursor
 vim.g.neovide_cursor_vfx_opacity = 200.0
-vim.o.guifont = "CommitMono Nerd Font:h12"
+vim.o.guifont = "RecMonoLinear Nerd Font Mono:h12"
+if vim.g.neovide == true then
+	vim.keymap.set({ "n", "x" }, "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
+	vim.keymap.set({ "n", "x" }, "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
+end
+-- Colorscheme opts
+require("gruvbox").setup({
+	terminal_colors = true, -- add neovim terminal colors
+	undercurl = true,
+	underline = true,
+	bold = true,
+	italic = {
+		strings = true,
+		emphasis = true,
+		comments = true,
+		operators = false,
+		folds = true,
+	},
+	strikethrough = true,
+	invert_selection = false,
+	invert_signs = false,
+	invert_tabline = false,
+	invert_intend_guides = false,
+	inverse = true, -- invert background for search, diffs, statuslines and errors
+	contrast = "", -- can be "hard", "soft" or empty string
+	palette_overrides = {},
+	overrides = {},
+	dim_inactive = false,
+	transparent_mode = false,
+})
+vim.o.background = "light"
+vim.cmd("colorscheme gruvbox")
