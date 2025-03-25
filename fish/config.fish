@@ -11,15 +11,6 @@ alias ii="xdg-open"
 alias l="eza"
 alias ls="eza"
 
-# Function for sudo nvim
-function sudo
-    if test "$argv" = "nvim"
-        command sudo -E nvim
-    else
-        command sudo $argv
-    end
-end
-
 # Function for Google search
 function g
     set search_query (string join '+' $argv)
@@ -41,7 +32,6 @@ if not contains $PATH $PNPM_HOME
     set -x PATH $PATH $PNPM_HOME
 end
 
-fish_add_path /home/kavin/.npm-global/bin
 
 set -gx EDITOR nvim
 starship init fish | source

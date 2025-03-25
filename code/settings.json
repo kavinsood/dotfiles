@@ -2,7 +2,7 @@
 	"terminal.integrated.enableMultiLinePasteWarning": "never",
 	"explorer.confirmDragAndDrop": false,
 	"explorer.confirmDelete": false,
-	"editor.fontFamily": "RecMonoLinear Nerd Font Mono",
+	"editor.fontFamily": "RecMonoLinear Nerd Font",
 	"editor.unicodeHighlight.allowedCharacters": {
 		" ": true
 	},
@@ -10,7 +10,6 @@
 	"files.autoSave": "onFocusChange",
 	"git.openRepositoryInParentFolders": "never",
 	"security.workspace.trust.untrustedFiles": "open",
-	"workbench.layoutControl.enabled": false,
-	"window.titleBarStyle": "custom",
-	"workbench.colorTheme": "Gruvbox Dark Medium",
+    "workbench.layoutControl.enabled": false,
+    "workbench.colorTheme": "Tokyo Night",
 }
