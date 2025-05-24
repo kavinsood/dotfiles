@@ -1,0 +1,300 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+description: Practical workflows for using AI prompts in project initialization and development
+globs: ["**/prompts/**", "**/scripts/prompts/**"]
+alwaysApply: false
+
+# AI Prompt Workflows for Project Development
+
+**Purpose**: Practical guide for using specialized AI prompts within the project initialization and TaskMaster workflow.
+
+## Prompt Arsenal
+
+### 1. Product Development Assistant
+**Use Case**: Project vision refinement and initial product specification
+**Best For**: Early-stage product definition, user flow design, screen planning
+
+### 2. Technical PRD Creator  
+**Use Case**: Feature-level technical documentation
+**Best For**: Converting product ideas into technical implementation plans
+
+### 3. Architecture & Dev Workflow
+**Use Case**: System architecture and development planning
+**Best For**: Technical foundation and development task breakdown
+
+## Integrated Workflow
+
+### Phase 1: Product Concept (Use Product Dev Assistant)
+
+#### Step 1: Initial Product Refinement
+```markdown
+Prompt: [Product Development Assistant]
+
+Input: [Your initial product idea]
+
+Expected Output:
+- 8-10 clarifying questions
+- Refined product spec
+- User flows and key screens
+- API requirements analysis
+```
+
+#### Step 2: Save Outputs to Project Structure
+```bash
+# Create project foundation
+mkdir project-name/.project/prompts
+
+# Save Product Dev Assistant outputs
+echo "[clarifying questions output]" > .project/prompts/clarifying-questions.md
+echo "[spec doc output]" > .project/prompts/product-spec.md
+echo "[user flows output]" > .project/prompts/user-flows.md
+echo "[api requirements]" > .project/prompts/api-requirements.md
+```
+
+### Phase 2: Technical Architecture (Use Dev Workflow)
+
+#### Step 3: Generate System Architecture
+```markdown
+Prompt: "I'm building [detailed product description from Phase 1]. 
+Use Next.js for frontend, Supabase for DB + auth. Give me the full architecture:
+- File + folder structure  
+- What each part does
+- Where state lives, how services connect
+- Format this entire document in markdown."
+
+Save as: .project/architecture.md
+```
+
+#### Step 4: Generate Development Tasks
+```markdown
+Prompt: "Using that architecture, write a granular step-by-step plan to build the MVP. 
+Each task should:
+- Be incredibly small + testable
+- Have a clear start + end  
+- Focus on one concern
+
+I'll be passing this off to an engineering LLM that will be told to complete 
+one task at a time, allowing me to test in between."
+
+Save as: .project/development-tasks.md
+```
+
+### Phase 3: Feature-Level PRDs (Use Technical PRD Creator)
+
+#### Step 5: Break Down into Feature PRDs
+For each major feature identified in Phase 1:
+
+```markdown
+Prompt: [Technical PRD Creator]
+
+Variables:
+- PRODUCT_DESCRIPTION: [Specific feature description]
+- TARGET_AUDIENCE: [From Phase 1 analysis]
+
+Save as: scripts/prd-[feature-name].txt
+```
+
+#### Example Feature Breakdown:
+```bash
+# Authentication System
+scripts/prd-authentication.txt
+
+# Core Dashboard  
+scripts/prd-dashboard.txt
+
+# User Management
+scripts/prd-user-management.txt
+
+# [Specific Features]
+scripts/prd-[feature].txt
+```
+
+### Phase 4: TaskMaster Integration
+
+#### Step 6: Initialize TaskMaster
+```bash
+# Initialize TaskMaster in project
+task-master init --name="[Project Name]" --yes
+
+# Parse each feature PRD
+task-master parse-prd --input=scripts/prd-authentication.txt
+task-master parse-prd --input=scripts/prd-dashboard.txt
+# etc.
+```
+
+## Prompt Templates & Usage
+
+### Enhanced Product Development Assistant Usage
+
+#### Preparation Checklist
+- [ ] Have a clear initial product idea (1-2 sentences)
+- [ ] Know your target audience roughly
+- [ ] Understand the core problem you're solving
+- [ ] Have 30-60 minutes for the full conversation
+
+#### Conversation Flow
+```markdown
+1. Start: "I have a product idea: [your idea]"
+2. Answer: [All 8-10 clarifying questions thoroughly]
+3. Request: "Please proceed to spec doc"
+4. Review: [Ensure spec captures your vision]
+5. Request: "Please proceed to design flows"
+6. Request: "Please proceed to generate screens" 
+7. Request: "Please proceed to analyze APIs"
+8. Request: "Please proceed to search APIs"
+9. Request: "Please proceed to summarize"
+```
+
+### Enhanced Technical PRD Creator Usage
+
+#### Input Preparation
+```markdown
+For each feature, prepare:
+
+PRODUCT_DESCRIPTION: 
+"[Feature name] for [Project name]. This feature allows users to [specific capability]. 
+It integrates with [other systems] and supports [key use cases]. 
+See /architecture.md for system context."
+
+TARGET_AUDIENCE:
+"[Specific user personas who will use this feature]"
+```
+
+#### Post-Generation Processing
+```bash
+# After PRD generation, enhance for TaskMaster compatibility:
+
+1. Add architectural context references
+2. Link to project-overview.md 
+3. Specify integration points
+4. Add dependency information
+5. Reference tech-stack.md decisions
+```
+
+### Dev Workflow Architecture Prompt
+
+#### Enhanced Architecture Prompt
+```markdown
+"I'm building [detailed description from Product Dev Assistant output].
+
+Technology Stack (see tech-stack.md):
+- Frontend: Next.js 14+ App Router + Tailwind v4 + shadcn/ui v4
+- Backend: [Your choices]
+- Database: [Your choices]
+- Authentication: [Your choices]
+
+Product Context (see project-overview.md):
+[Key context from Phase 1]
+
+Give me the full technical architecture:
+- Complete file + folder structure for Next.js App Router
+- What each directory and key file does
+- Where state lives (global vs local vs server)
+- How services and components connect
+- Database schema outline
+- API endpoint structure
+- Component hierarchy
+- Security and authentication flow
+
+Format as detailed markdown with code examples."
+```
+
+## Quality Assurance Workflow
+
+### Document Validation Checklist
+
+#### After Product Dev Assistant
+- [ ] Product vision is clear and compelling
+- [ ] User flows cover all critical paths
+- [ ] API requirements are comprehensive
+- [ ] Screen designs address user needs
+
+#### After Architecture Generation
+- [ ] Folder structure follows Next.js App Router conventions
+- [ ] Component hierarchy is logical
+- [ ] State management strategy is clear
+- [ ] Database schema supports all features
+- [ ] Security considerations are addressed
+
+#### After PRD Creation
+- [ ] Each PRD has 20+ user stories in Gherkin format
+- [ ] Technical requirements reference architecture
+- [ ] Dependencies are clearly mapped
+- [ ] Acceptance criteria are testable
+
+#### Before TaskMaster Integration
+- [ ] All documents are consistent with each other
+- [ ] Architecture decisions are justified
+- [ ] Feature boundaries are clear
+- [ ] Integration points are documented
+
+## Troubleshooting Common Issues
+
+### Product Dev Assistant Issues
+**Problem**: Questions too generic or not helpful
+**Solution**: Provide more detailed initial product description
+
+**Problem**: User flows miss edge cases  
+**Solution**: Explicitly mention complex scenarios in clarifying questions
+
+### PRD Creator Issues
+**Problem**: User stories too high-level
+**Solution**: Provide more specific feature description with examples
+
+**Problem**: Technical requirements too vague
+**Solution**: Reference architecture.md and provide implementation context
+
+### Architecture Workflow Issues
+**Problem**: Folder structure doesn't match project needs
+**Solution**: Provide specific requirements about project complexity and features
+
+**Problem**: Tasks too large or unclear
+**Solution**: Request more granular breakdown with specific deliverables
+
+## Integration with Cursor Rules
+
+### Alignment with Existing Rules
+- **TypeScript rules**: Architecture decisions should specify TypeScript patterns
+- **React rules**: Component hierarchy should follow React best practices  
+- **Design rules**: UI structure should align with shadcn/ui v4 + Tailwind v4
+- **API design rules**: API architecture should follow REST/GraphQL guidelines
+
+### Cursor-Specific Enhancements
+```markdown
+When generating architecture, add:
+"This will be implemented using Cursor with these rules:
+- TypeScript strict mode with discriminated unions
+- React functional components with custom hooks
+- shadcn/ui v4 + Tailwind v4 for styling
+- API design following RESTful patterns
+- Security-first development approach"
+```
+
+## File Organization Strategy
+
+### Recommended Project Structure
+```
+project-name/
+├── .project/                 # Project documentation
+│   ├── prompts/             # AI prompt outputs
+│   ├── project-overview.md  # Vision and requirements
+│   ├── tech-stack.md        # Technology decisions  
+│   ├── architecture.md      # System architecture
+│   └── user-flows.md        # User journey mapping
+├── scripts/                 # TaskMaster PRDs
+│   ├── prd-authentication.txt
+│   ├── prd-dashboard.txt
+│   └── prd-[features].txt
+├── tasks/                   # TaskMaster generated
+│   └── tasks.json
+└── [project code]           # Actual implementation
+```
+
+This structure ensures:
+- **Clear separation** between planning and implementation
+- **Easy reference** during development
+- **Consistent context** for AI assistance
+- **Maintainable documentation** as project evolves

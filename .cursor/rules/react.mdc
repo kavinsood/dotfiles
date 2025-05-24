@@ -1,0 +1,251 @@
+---
+description: 
+globs: **/*.tsx,**/*.jsx,src/hooks/**/*.ts,src/contexts/**/*.ts
+alwaysApply: false
+---
+# React Development Patterns
+
+**Purpose:** Write maintainable, predictable React code with minimal complexity.
+
+### State Management Philosophy
+
+#### Minimize Local State
+- UIs are thin wrappers over data
+- Avoid `useState` unless truly necessary and independent of business logic
+- Consider if UI state can be flattened into basic calculations
+- `useState` only for truly reactive, component-local concerns
+
+#### State Machines Over Multiple States
+```tsx
+// ❌ Avoid multiple related states
+const [isLoading, setIsLoading] = useState(false);
+const [error, setError] = useState(null);
+const [data, setData] = useState(null);
+
+// ✅ Use state machines or reducers
+const [state, setState] = useState({ status: 'idle', data: null, error: null });
+```
+
+### Component Architecture
+
+#### Component Abstraction Rules
+- Create new components when nesting conditional logic
+- Extract components for top-level if/else statements
+- Reserve ternaries for small, easily readable logic only
+
+```tsx
+// ❌ Nested conditional logic
+{user ? (
+  user.isPremium ? (
+    user.hasAccess ? <PremiumContent /> : <UpgradePrompt />
+  ) : <BasicContent />
+) : <LoginPrompt />}
+
+// ✅ Extract to component
+<UserContentRenderer user={user} />
+```
+
+#### Explicit Logic Over useEffect
+- Avoid dependent logic in `useEffect`
+- Choose explicit function calls over implicit reactive behavior
+- `useEffect` only for true side effects (API calls, subscriptions, DOM manipulation)
+
+```tsx
+// ❌ Dependent logic in useEffect
+useEffect(() => {
+  if (user && user.id) {
+    setUserData(processUser(user));
+  }
+}, [user]);
+
+// ✅ Explicit calculation
+const userData = user?.id ? processUser(user) : null;
+```
+
+#### setTimeout Usage
+- Generally flaky and usually a hack
+- Always provide comment explaining why it's necessary
+- Consider alternatives: requestAnimationFrame, proper event handling, state machines
+
+```tsx
+// ✅ Justified setTimeout with explanation
+setTimeout(() => {
+  // Hack: Wait for DOM to update after React render
+  // TODO: Replace with proper ref callback when available
+  focusInput();
+}, 0);
+```
+
+### Modern React Patterns
+
+#### Custom Hooks for Logic Separation
+```tsx
+// ✅ Extract stateful logic into custom hooks
+function useUserData(userId: string) {
+  const [state, setState] = useState({ status: 'idle', data: null, error: null });
+  
+  useEffect(() => {
+    if (!userId) return;
+    
+    setState({ status: 'loading', data: null, error: null });
+    fetchUser(userId)
+      .then(data => setState({ status: 'success', data, error: null }))
+      .catch(error => setState({ status: 'error', data: null, error }));
+  }, [userId]);
+  
+  return state;
+}
+```
+
+#### Compound Components Pattern
+```tsx
+// ✅ Flexible, composable component APIs
+function Tabs({ children, defaultValue }) {
+  const [activeTab, setActiveTab] = useState(defaultValue);
+  return (
+    <TabsContext.Provider value={{ activeTab, setActiveTab }}>
+      {children}
+    </TabsContext.Provider>
+  );
+}
+
+Tabs.List = function TabsList({ children }) { /* ... */ };
+Tabs.Trigger = function TabsTrigger({ value, children }) { /* ... */ };
+Tabs.Content = function TabsContent({ value, children }) { /* ... */ };
+```
+
+#### Render Props & Children Functions
+```tsx
+// ✅ Flexible data sharing patterns
+function DataProvider({ children }) {
+  const data = useApiData();
+  return children({ data, loading, error });
+}
+
+// Usage
+<DataProvider>
+  {({ data, loading, error }) => (
+    loading ? <Spinner /> : 
+    error ? <ErrorMessage error={error} /> :
+    <DataDisplay data={data} />
+  )}
+</DataProvider>
+```
+
+### Performance Optimization
+
+#### Memoization Best Practices
+```tsx
+// ✅ Memoize expensive calculations
+const expensiveValue = useMemo(() => {
+  return heavyComputation(data);
+}, [data]);
+
+// ✅ Memoize callbacks passed to optimized children
+const handleClick = useCallback((id: string) => {
+  onItemSelect(id);
+}, [onItemSelect]);
+
+// ✅ Memo for pure components with frequent parent re-renders
+const ExpensiveChild = memo(function ExpensiveChild({ items }) {
+  return <ComplexListRenderer items={items} />;
+});
+```
+
+#### Virtual Scrolling for Large Lists
+```tsx
+// ✅ Use react-window for large datasets
+import { FixedSizeList as List } from 'react-window';
+
+function VirtualizedList({ items }) {
+  const Row = ({ index, style }) => (
+    <div style={style}>
+      <ListItem item={items[index]} />
+    </div>
+  );
+
+  return (
+    <List
+      height={600}
+      itemCount={items.length}
+      itemSize={50}
+      width="100%"
+    >
+      {Row}
+    </List>
+  );
+}
+```
+
+### Error Boundaries & Suspense
+
+#### Error Boundary Implementation
+```tsx
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('Error caught by boundary:', error, errorInfo);
+    // Log to error reporting service
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback || <DefaultErrorUI />;
+    }
+    return this.props.children;
+  }
+}
+```
+
+#### Suspense for Data Fetching
+```tsx
+// ✅ Modern data fetching with Suspense
+function UserProfile({ userId }) {
+  const user = useSuspenseQuery(['user', userId], () => fetchUser(userId));
+  return <UserDisplay user={user} />;
+}
+
+// Wrap with Suspense boundary
+<Suspense fallback={<UserSkeleton />}>
+  <UserProfile userId={userId} />
+</Suspense>
+```
+
+### Form Handling
+
+#### Controlled vs Uncontrolled Forms
+```tsx
+// ✅ Use react-hook-form for complex forms
+import { useForm } from 'react-hook-form';
+
+function ContactForm() {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  
+  const onSubmit = (data) => {
+    // Handle form submission
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input
+        {...register('email', { 
+          required: 'Email is required',
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: 'Invalid email address'
+          }
+        })}
+      />
+      {errors.email && <span>{errors.email.message}</span>}
+    </form>
+  );
+}
+```

@@ -1,0 +1,31 @@
+---
+description: When dealing with anything that involves stripe such as subscriptions, payment links / checkout / embedded components
+globs: 
+alwaysApply: false
+---
+description: Guidelines for integrating Stripe for payments and subscriptions.
+globs: ["app/api/stripe/**/*.{ts,tsx}", "components/billing/**/*.{ts,tsx}", "lib/stripe/**/*.ts"] # Adjust as needed
+alwaysApply: false
+
+### Stripe Integration
+
+1.  **Core Functionality:**
+    *   Use Stripe for handling payments and managing subscriptions.
+2.  **Customer Portal:**
+    *   Implement or link to the Stripe Customer Portal to allow users to manage their subscriptions, payment methods, and view invoices.
+3.  **Webhooks:**
+    *   Securely handle essential Stripe webhooks (e.g., `checkout.session.completed`, `invoice.payment_succeeded`, `customer.subscription.updated`, `customer.subscription.deleted`).
+    *   Verify webhook signatures.
+    *   Idempotently process webhooks.
+4.  **Data Synchronization:**
+    *   Sync subscription status and relevant billing information from Stripe to your local database (e.g., Cloudflare D1) via webhooks or API calls.
+5.  **Payment UI:**
+    *   Use Stripe Elements or Checkout for a secure and PCI-compliant payment UI.
+6.  **PCI Compliance & Error Handling:**
+    *   Ensure all Stripe integration points adhere to PCI compliance standards (Stripe Elements/Checkout helps significantly).
+    *   Implement robust error handling for API calls to Stripe and webhook processing.
+7.  **Environment Variables:**
+    *   Store Stripe API keys (secret key, publishable key) and webhook signing secret securely in environment variables.
+8.  **References:**
+    *   Stripe API Documentation
+    *   Stripe Webhooks Documentation

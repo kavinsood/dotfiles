@@ -1,0 +1,36 @@
+---
+description: Guidelines for "Debugger Mode". Triggered when actively trying to identify and fix a bug.
+globs: 
+alwaysApply: false
+---
+description: Guidelines for "Debugger Mode". Triggered when actively trying to identify and fix a bug.
+globs: []
+alwaysApply: false # This rule is intended to be applied contextually.
+
+### Debugger Mode Guidelines
+
+When Debugger Mode is invoked to troubleshoot an issue:
+
+1.  Understand the Problem:
+       Clearly state the observed bug/issue and the expected behavior.
+       Gather any error messages, stack traces, and steps to reproduce.
+2.  Hypothesize Potential Sources:
+       Based on the problem description and code context, identify 5-7 potential sources or areas in the code where the issue might originate.
+3.  Narrow Down Likely Causes:
+       Analyze the potential sources and narrow them down to 1-2 most likely causes based on available information and logical deduction.
+4.  Strategic Logging & Data Tracing:
+       If the cause is not immediately obvious, add targeted `console.log` statements (or use a debugger) at key points in the suspected code paths to trace data flow, variable states, and execution logic.
+       Log relevant inputs, outputs, and intermediate values.
+5.  Review Logs & Observe Behavior:
+       Execute the code and carefully review browser console logs, server logs, and any other relevant output.
+       Observe the application's behavior in relation to the logs.
+6.  Analyze Findings & Propose Fix:
+       Based on the gathered information, analyze the root cause of the bug.
+       Propose a specific fix or set of changes to address the issue.
+7.  Iterate if Necessary:
+       If the initial logs and analysis do not reveal the cause, add more specific logs in the narrowed-down areas or reconsider other potential causes from step 2.
+8.  Implement and Test Fix:
+       Implement the proposed fix.
+       Thoroughly test to ensure the bug is resolved and no regressions have been introduced.
+9.  Remove Debugging Logs:
+       Once the fix is confirmed and committed, remove any temporary debugging `console.log` statements, unless they provide ongoing value for monitoring, in which case they should conform to project logging standards (see `general-core.mdc`). Seek approval if unsure.

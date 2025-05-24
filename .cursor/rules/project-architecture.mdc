@@ -1,0 +1,512 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+description: Project initialization, architecture planning, and system design with comprehensive documentation workflow
+globs: ["**/architecture.md", "**/project-overview.md", "**/tech-stack.md", "**/.project/**"]
+alwaysApply: false
+
+# Project Initialization & Architecture Planning
+
+**Purpose**: Bridge the gap between project vision and TaskMaster execution by establishing comprehensive project documentation and architecture before diving into task-level work.
+
+## Core Philosophy
+
+TaskMaster excels at **task execution and workflow management**, but needs a **strategic foundation**:
+- **TaskMaster handles**: Task breakdown, dependencies, implementation workflow, subtask management
+- **This workflow handles**: Project vision, architecture decisions, technology stack, feature mapping, documentation structure
+
+## Pre-TaskMaster Workflow
+
+### Phase 1: Project Vision & Requirements
+
+#### 1.1 Product Concept Refinement
+Use the **Product Development Assistant approach**:
+
+```markdown
+## Step 1: Clarifying Questions (8-10 critical questions)
+- What is the core problem this solves?
+- Who is the primary user persona?
+- What are the 3 most critical user actions?
+- What does success look like in 6 months?
+- What are the technical constraints?
+- What is the expected scale (users, data, requests)?
+- What are the non-negotiable features vs nice-to-haves?
+- What existing solutions are we competing with/replacing?
+```
+
+#### 1.2 Create Project Overview Document
+**File: `project-overview.md`**
+```markdown
+# [Project Name] - Project Overview
+
+## Vision Statement
+[2-3 sentences describing what this product does and why it matters]
+
+## Problem & Solution
+- **Problem**: [Clear problem statement]
+- **Solution**: [How this product solves it]
+- **Target Audience**: [Primary user personas]
+
+## Success Metrics
+- [Quantifiable success criteria]
+- [Key performance indicators]
+
+## Feature Priority Matrix
+### Must-Have (MVP)
+- [Critical features for launch]
+
+### Should-Have (Post-MVP)
+- [Important but not critical]
+
+### Could-Have (Future)
+- [Nice-to-have features]
+
+## Competitive Landscape
+- [Key competitors and differentiators]
+
+## Business Context
+- [Timeline, budget, team constraints]
+```
+
+### Phase 2: Technical Architecture Definition
+
+#### 2.1 Architecture Mode Guidelines
+
+When significant system design is required, follow this rigorous process:
+
+**Step 1: Deep Reflection & Scope Analysis**
+- Deeply reflect on the system requirements from Phase 1
+- Thoroughly analyze technical constraints and requirements
+- Understand the full scope and impact of architectural decisions
+
+**Step 2: System Scale & Constraints Evaluation**
+- Consider the scale of the system (current and future)
+- Evaluate performance requirements and technical constraints
+- Assess business requirements and user needs from project-overview.md
+
+**Step 3: Tradeoff Analysis (Multi-Option Approach)**
+- Develop at least 2-3 distinct architectural approaches
+- Write a concise tradeoff analysis (3-5 paragraphs per option):
+  - Pros and cons of each approach
+  - Technical risks and mitigation strategies
+  - Alignment with project goals and constraints
+  - Long-term scalability considerations
+
+**Step 4: Clarifying Questions (System Design Refinement)**
+- Formulate 4-6 targeted questions to refine design choices:
+  - Performance and scalability requirements
+  - Integration constraints and external dependencies
+  - Security and compliance requirements
+  - Team expertise and maintenance considerations
+
+**Step 5: Draft Detailed System Design**
+- Choose the optimal architectural approach based on analysis
+- Create comprehensive architecture documentation
+- Include technology stack justification
+
+**Step 6: Architecture Validation**
+- Review architectural decisions against project requirements
+- Validate with stakeholders if applicable
+- Document any modifications or compromises
+
+#### 2.2 Technology Stack Decision Document
+**File: `tech-stack.md`**
+```markdown
+# Technology Stack & Architecture Decisions
+
+## Architecture Decision Record
+**Decision**: [Primary architectural approach chosen]
+**Context**: [Key factors that influenced this decision]
+**Consequences**: [Expected outcomes and tradeoffs]
+
+## Frontend Stack
+- **Framework**: Next.js 14+ (App Router)
+- **Styling**: Tailwind CSS v4 + shadcn/ui v4
+- **State Management**: [Zustand/React Query/etc.]
+- **Form Handling**: React Hook Form + Zod
+- **Rationale**: [Why these choices based on architecture analysis]
+
+## Backend Stack
+- **Database**: [Supabase/PostgreSQL/etc.]
+- **Authentication**: [Supabase Auth/NextAuth/etc.]
+- **API Layer**: [Next.js API routes/tRPC/etc.]
+- **File Storage**: [Supabase Storage/S3/etc.]
+- **Rationale**: [Why these choices support the architecture]
+
+## DevOps & Infrastructure
+- **Hosting**: [Vercel/Railway/etc.]
+- **Database Hosting**: [Supabase/PlanetScale/etc.]
+- **Monitoring**: [Sentry/LogRocket/etc.]
+- **Analytics**: [PostHog/Mixpanel/etc.]
+
+## Development Tools
+- **Package Manager**: pnpm
+- **Linting**: ESLint + Prettier
+- **Testing**: Vitest + React Testing Library
+- **Type Safety**: TypeScript strict mode
+
+## Alternative Approaches Considered
+### Option 1: [Alternative approach]
+- **Pros**: [Benefits]
+- **Cons**: [Drawbacks]
+- **Why rejected**: [Reasoning]
+
+### Option 2: [Alternative approach]
+- **Pros**: [Benefits]
+- **Cons**: [Drawbacks]
+- **Why rejected**: [Reasoning]
+```
+
+#### 2.3 System Architecture Document
+**File: `architecture.md`**
+```markdown
+# System Architecture
+
+## Executive Summary
+[2-3 sentences describing the overall architectural approach and key decisions]
+
+## High-Level Architecture
+```
+[ASCII diagram or description of system components]
+```
+
+## Key Components & Responsibilities
+### Frontend Layer
+- **Next.js App Router**: [Specific responsibilities]
+- **Component System**: [shadcn/ui integration]
+- **State Management**: [Strategy and rationale]
+
+### Backend Layer
+- **API Layer**: [Structure and responsibilities]
+- **Database Layer**: [Schema design approach]
+- **Authentication**: [Security architecture]
+
+### Infrastructure Layer
+- **Hosting**: [Deployment strategy]
+- **Monitoring**: [Observability approach]
+- **Performance**: [Optimization strategy]
+
+## Folder Structure
+```
+project-name/
+├── app/                    # Next.js App Router
+│   ├── (auth)/            # Route groups
+│   ├── api/               # API routes
+│   ├── globals.css        # Global styles
+│   └── layout.tsx         # Root layout
+├── components/            # Reusable components
+│   ├── ui/               # shadcn/ui components
+│   └── forms/            # Form components
+├── lib/                  # Utilities and configurations
+│   ├── db.ts            # Database client
+│   ├── auth.ts          # Authentication config
+│   └── utils.ts         # Helper functions
+├── types/               # TypeScript type definitions
+├── hooks/               # Custom React hooks
+└── scripts/             # Build and utility scripts
+```
+
+## Data Flow Architecture
+1. **User Interaction** → UI Components
+2. **State Management** → [Your state solution]
+3. **API Calls** → Next.js API routes or external APIs
+4. **Database** → Supabase/PostgreSQL
+5. **Authentication** → [Your auth solution]
+
+## Database Schema Design
+### Core Entities
+- [Primary entities and relationships]
+- [Key tables and their purposes]
+- [Indexing strategy]
+
+### Data Relationships
+- [Entity relationship diagram or description]
+- [Referential integrity approach]
+
+## API Architecture
+### Endpoint Structure
+- [Core API endpoints needed]
+- [Authentication requirements]
+- [Request/response patterns]
+
+### Integration Points
+- [External API integrations]
+- [Third-party service connections]
+
+## Component Hierarchy
+### Layout Components
+- [Main layout structure]
+- [Navigation patterns]
+
+### Feature Components
+- [Major feature components]
+- [Reusable patterns]
+
+### UI Components
+- [shadcn/ui integration]
+- [Custom component strategy]
+
+## Security Architecture
+### Authentication Flow
+- [User authentication process]
+- [Session management]
+
+### Authorization Patterns
+- [Permission system]
+- [Role-based access control]
+
+### Data Validation Strategy
+- [Input validation approach]
+- [Type safety implementation]
+
+## Performance Considerations
+### Caching Strategy
+- [Client-side caching]
+- [Server-side caching]
+- [Database optimization]
+
+### Bundle Optimization
+- [Code splitting strategy]
+- [Asset optimization]
+
+### Database Performance
+- [Query optimization]
+- [Indexing strategy]
+
+## Scalability Planning
+### Horizontal Scaling
+- [Database scaling approach]
+- [API scaling strategy]
+
+### Vertical Scaling
+- [Performance bottleneck identification]
+- [Resource optimization]
+
+## Risk Assessment & Mitigation
+### Technical Risks
+- [Identified technical risks]
+- [Mitigation strategies]
+
+### Operational Risks
+- [Deployment risks]
+- [Monitoring strategies]
+
+## Future Evolution
+### Planned Enhancements
+- [Architectural evolution path]
+- [Technology migration strategy]
+
+### Extension Points
+- [Areas designed for future expansion]
+- [Plugin/module architecture]
+```
+
+### Phase 3: Feature Mapping & User Flows
+
+#### 3.1 User Flow Documentation
+**File: `user-flows.md`**
+```markdown
+# User Flows & Feature Mapping
+
+## Core User Journeys
+
+### 1. [Primary User Flow]
+1. User lands on homepage
+2. [Step-by-step flow]
+3. Success state achieved
+
+### 2. [Secondary User Flow]
+[Detailed flow]
+
+## Screen Inventory
+### Authentication Screens
+- Login page
+- Registration page
+- Password reset
+
+### Core Application Screens
+- Dashboard/Home
+- [Feature-specific screens]
+
+### Administrative Screens
+- Settings
+- Profile management
+
+## State Management Map
+- **Global State**: [What lives in global state]
+- **Local State**: [Component-specific state]
+- **Server State**: [API data management]
+
+## Component-to-Feature Mapping
+- [How components map to user features]
+- [Reusability patterns across features]
+```
+
+### Phase 4: Integration with TaskMaster
+
+#### 4.1 PRD Creation Strategy
+Once architecture is defined, create **feature-specific PRDs** for TaskMaster:
+
+```markdown
+## TaskMaster Integration Workflow
+
+1. **Complete Phases 1-3** (Project Vision + Architecture)
+2. **Break down into feature PRDs**:
+   - Authentication system PRD
+   - Core dashboard PRD
+   - [Feature X] PRD
+   - [Feature Y] PRD
+
+3. **Use TaskMaster for each feature**:
+   ```bash
+   task-master parse-prd --input=prd-authentication.txt
+   task-master parse-prd --input=prd-dashboard.txt
+   ```
+
+4. **Maintain architecture.md as reference** for all TaskMaster tasks
+```
+
+#### 4.2 TaskMaster PRD Template
+**File: `prd-template.txt`**
+```markdown
+# [Feature Name] PRD
+
+## Context
+This feature is part of [Project Name], see architecture.md for system context.
+
+## Architecture Integration
+- **Component Layer**: [Which architectural layer this affects]
+- **Dependencies**: [References to architecture.md sections]
+- **Integration Points**: [How this connects to existing architecture]
+
+## Feature Overview
+[Specific feature description]
+
+## User Stories (Gherkin Format)
+GIVEN a user is authenticated
+WHEN they navigate to [feature]
+THEN they should see [expected behavior]
+
+## Technical Requirements
+### Database Changes
+- [Schema modifications needed]
+- [Migration strategy]
+
+### API Endpoints
+- [New endpoints required]
+- [Existing endpoint modifications]
+
+### Component Architecture
+- [New components needed]
+- [Component integration patterns]
+
+### Integration Points
+- [Connections to existing systems]
+- [Third-party integrations]
+
+## Acceptance Criteria
+- [ ] [Specific, testable criteria]
+- [ ] [Performance requirements aligned with architecture]
+- [ ] [Security requirements from architecture]
+
+## Dependencies
+- **Requires**: [Other features/systems]
+- **Blocks**: [Features that depend on this]
+- **Architecture Dependencies**: [References to architecture decisions]
+
+## Reference Architecture
+See `/architecture.md` sections:
+- [Relevant architecture sections]
+- [Design patterns to follow]
+- [Technical constraints to respect]
+```
+
+## Implementation Workflow
+
+### Step 1: Project Initialization
+```bash
+# 1. Create project structure
+mkdir project-name && cd project-name
+mkdir .project docs
+
+# 2. Create foundation documents
+touch .project/project-overview.md
+touch .project/tech-stack.md  
+touch .project/architecture.md
+touch .project/user-flows.md
+```
+
+### Step 2: Documentation Phase
+1. **Complete project-overview.md** (use Product Dev Assistant approach)
+2. **Apply Architecture Mode** (rigorous architectural analysis)
+3. **Define tech-stack.md** (document decisions and alternatives)
+4. **Create architecture.md** (comprehensive system design)
+5. **Map user-flows.md** (user journeys aligned with architecture)
+
+### Step 3: TaskMaster Integration
+1. **Break project into feature PRDs** using the enhanced template
+2. **Initialize TaskMaster** in the project
+3. **Parse feature PRDs** one by one with architectural context
+4. **Begin development workflow** with TaskMaster
+
+### Step 4: Maintain Context
+- **Keep architecture.md updated** as system evolves
+- **Reference architecture in TaskMaster updates**
+- **Document architectural decisions** in tech-stack.md
+- **Track architectural debt** and evolution
+
+## Quality Gates
+
+### Before Moving to TaskMaster
+- [ ] Project vision is clear and documented
+- [ ] Architectural analysis is complete with alternatives considered
+- [ ] Technology stack decisions are justified with tradeoffs
+- [ ] System architecture is comprehensive and detailed
+- [ ] User flows are mapped and aligned with architecture
+- [ ] Feature boundaries are identified and documented
+
+### During Development
+- [ ] Architecture.md stays current with implementation
+- [ ] TaskMaster tasks reference architectural decisions
+- [ ] New features update relevant architecture documentation
+- [ ] Technical debt is documented in architecture.md
+- [ ] Architectural deviations are justified and documented
+
+### Architecture Review Checkpoints
+- [ ] All major components have clear responsibilities
+- [ ] Data flows are well-defined and efficient
+- [ ] Security considerations are addressed throughout
+- [ ] Performance implications are understood and planned for
+- [ ] Scalability path is documented
+- [ ] Integration points are clearly specified
+
+## Benefits of This Approach
+
+### For AI Development
+- **Clear context** for all coding decisions
+- **Consistent architecture** across TaskMaster tasks
+- **Reduced confusion** about project structure
+- **Better task breakdown** with architectural context
+- **Informed tradeoff decisions** based on documented analysis
+
+### For Project Success
+- **Prevents architectural drift** through documented decisions
+- **Maintains project vision** alignment throughout development
+- **Enables better technical decisions** with historical context
+- **Provides onboarding documentation** for team members
+- **Creates institutional knowledge** preservation
+
+### For Long-term Maintenance
+- **Documented architectural evolution** and decision history
+- **Clear understanding** of system design rationale
+- **Easier debugging** with comprehensive system documentation
+- **Informed refactoring** decisions based on original design intent
+
+### Integration with Existing Rules
+- **Complements TaskMaster**: Provides the strategic foundation TaskMaster needs
+- **Aligns with design rules**: References shadcn/ui v4 and Tailwind v4 decisions
+- **Supports TypeScript rules**: Documents type architecture decisions
+- **Enhances API design**: Defines API strategy before implementation
+- **Integrates security considerations**: Builds on security rule foundations
