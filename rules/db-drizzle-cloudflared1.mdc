@@ -1,0 +1,49 @@
+---
+description: 
+globs: drizzle.config.ts,src/db/schema.ts,src/db/**/*.ts,src/lib/db/**/*.ts,src/lib/db/**/*.tsx,app/**/route.ts,app/**/page.tsx,app/**/layout.tsx
+alwaysApply: false
+---
+description: Guidelines for database management using Drizzle ORM with Cloudflare D1.
+globs: ["drizzle.config.ts", "src/db/schema.ts", "src/lib/db//.{ts,tsx}", "app/api//route.ts"] # Adjust as needed
+alwaysApply: false
+
+### Database: Drizzle ORM & Cloudflare D1
+
+1.  Setup & Configuration:
+       Ensure Cloudflare D1 is correctly set up and configured in `wrangler.toml`.
+       Connect Drizzle ORM to D1 using the appropriate driver (`drizzle-orm/d1`).
+2.  Schema Definition:
+       Define database schemas clearly in a dedicated location (e.g., `src/db/schema.ts`).
+       Use Drizzle's schema declaration syntax.
+    ```typescript
+    // Example: src/db/schema.ts
+    // import { text, integer, sqliteTable } from "drizzle-orm/sqlite-core";
+    //
+    // export const users = sqliteTable("users", {
+    //   id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()), // Or other ID generation
+    //   name: text("name").notNull(),
+    //   email: text("email").unique().notNull(),
+    //   createdAt: integer("created_at", { mode: "timestamp_ms" }).defaultNow().notNull(),
+    // });
+    //
+    // export const posts = sqliteTable("posts", {
+    //   id: text("id").primaryKey(),
+    //   title: text("title").notNull(),
+    //   userId: text("user_id").references(() => users.id),
+    // });
+    ```
+3.  Migrations:
+       Use `drizzle-kit` for generating and managing database migrations.
+       Apply migrations consistently across environments.
+       Commit migration files to version control.
+4.  Queries:
+       Write optimized and type-safe queries using Drizzle's query builder.
+       Leverage Drizzle's relational query capabilities.
+5.  Error Handling:
+       Implement robust error handling for database operations. Catch and log errors appropriately.
+       Consider specific D1 or Drizzle error types if necessary.
+6.  Backups & Recovery:
+       Be aware of Cloudflare D1's backup mechanisms. For critical data, consider additional backup strategies if needed.
+7.  References:
+       Drizzle ORM Documentation
+       Cloudflare D1 Documentation

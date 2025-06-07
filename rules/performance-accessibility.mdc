@@ -1,0 +1,75 @@
+---
+description: 
+globs: **/*.{tsx}, **/*.{jsx}, **/*.{ts}, **/*.{js} **/*.css, **/*.scss
+alwaysApply: false
+---
+description: Performance optimization and accessibility guidelines for modern web applications
+globs: ["**/*.{tsx,jsx,ts,js}", "**/*.css", "**/*.scss"]
+alwaysApply: false
+
+### Performance Optimization
+
+1. **Bundle Optimization**:
+   - Use dynamic imports for code splitting: `const Component = lazy(() => import('./Component'))`
+   - Implement route-based code splitting in React/Next.js applications
+   - Minimize bundle size by avoiding unnecessary dependencies
+   - Use tree-shaking friendly imports: `import { specific } from 'library'` not `import * as lib`
+
+2. **React Performance**:
+   - Use `useMemo` for expensive calculations, not just caching objects
+   - Use `useCallback` only when passing functions to optimized child components
+   - Prefer `React.memo` for pure components with frequent re-renders
+   - Avoid inline object/function creation in render: `onClick={() => {}}` → `onClick={handleClick}`
+
+3. **Image & Asset Optimization**:
+   - Always use `next/image` for images in Next.js applications
+   - Specify explicit width/height to prevent layout shift
+   - Use appropriate image formats: WebP for photos, SVG for icons
+   - Implement lazy loading for images below the fold
+
+4. **Database & API Performance**:
+   - Use database indexes for frequently queried fields
+   - Implement proper pagination for large datasets
+   - Use database-level filtering instead of application-level filtering
+   - Cache expensive API calls with appropriate TTL
+
+### Accessibility (a11y)
+
+1. **Semantic HTML**:
+   - Use semantic HTML elements: `<button>`, `<nav>`, `<main>`, `<section>`
+   - Provide meaningful heading hierarchy (h1 → h2 → h3)
+   - Use `<label>` elements properly associated with form controls
+
+2. **ARIA Attributes**:
+   - Add `aria-label` for buttons with only icons
+   - Use `aria-describedby` for form field help text
+   - Implement `aria-expanded` for collapsible content
+   - Add `role` attributes only when semantic HTML isn't sufficient
+
+3. **Keyboard Navigation**:
+   - Ensure all interactive elements are keyboard accessible
+   - Implement logical tab order with `tabIndex` when needed
+   - Provide visible focus indicators for all focusable elements
+   - Support common keyboard shortcuts (Enter, Space, Escape)
+
+4. **Color & Contrast**:
+   - Ensure WCAG AA contrast ratios (4.5:1 for normal text, 3:1 for large text)
+   - Don't rely solely on color to convey information
+   - Test with reduced motion preferences: `prefers-reduced-motion`
+
+### Core Web Vitals
+
+1. **Largest Contentful Paint (LCP)**:
+   - Optimize critical resource loading
+   - Use server-side rendering for above-the-fold content
+   - Preload critical assets with `<link rel="preload">`
+
+2. **First Input Delay (FID)**:
+   - Minimize JavaScript execution time
+   - Use web workers for heavy computations
+   - Break up long tasks with `setTimeout` or `scheduler.postTask`
+
+3. **Cumulative Layout Shift (CLS)**:
+   - Reserve space for dynamic content with CSS
+   - Avoid inserting content above existing content
+   - Use `aspect-ratio` CSS property for responsive images

@@ -1,0 +1,248 @@
+---
+description: 
+globs: **/*.ts,**/*.tsx
+alwaysApply: false
+---
+description: Modern TypeScript patterns, type safety, and advanced language features
+globs: ["**/*.ts", "**/*.tsx"]
+alwaysApply: false
+
+### Core TypeScript Configuration
+
+1. **Strict Mode (Required)**:
+   - Enable TypeScript `strict` mode and all its sub-options in `tsconfig.json`
+   - Use `noUncheckedIndexedAccess: true` to prevent runtime errors from array/object access
+   ```typescript
+   // ✅ Strict mode prevents these runtime errors
+   const items = ["a", "b", "c"];
+   const item = items[10]; // string | undefined (not string!)
+   ```
+
+### Type Definitions & Patterns
+
+2. **Interface vs Type Usage**:
+   - Use `interface` for object shapes that might be extended
+   - Use `type` for unions, intersections, primitives, or computed types
+   ```typescript
+   // ✅ Interface for extensible object shapes
+   interface User {
+     id: string;
+     name: string;
+   }
+   
+   // ✅ Type for unions and computed types
+   type Status = "pending" | "done" | "error";
+   type UserWithStatus = User & { status: Status };
+   ```
+
+3. **Discriminated Unions (Preferred Pattern)**:
+   - Use discriminated unions to prevent impossible states
+   - Always include a discriminator field for type narrowing
+   ```typescript
+   // ❌ Bad: Allows impossible states
+   type FetchState<T> = {
+     status: "idle" | "loading" | "success" | "error";
+     data?: T;
+     error?: Error;
+   };
+   
+   // ✅ Good: Prevents impossible states
+   type FetchState<T> =
+     | { status: "idle" }
+     | { status: "loading" }
+     | { status: "success"; data: T }
+     | { status: "error"; error: Error };
+   ```
+
+4. **Enum Alternatives**:
+   - Do NOT introduce new enums. Use `as const` objects instead
+   - Retain existing enums but prefer migration to `as const`
+   ```typescript
+   // ✅ Preferred: as const object
+   const UserRole = {
+     ADMIN: "admin",
+     EDITOR: "editor", 
+     VIEWER: "viewer",
+   } as const;
+   
+   type UserRoleKey = keyof typeof UserRole; // "ADMIN" | "EDITOR" | "VIEWER"
+   type UserRoleValue = typeof UserRole[UserRoleKey]; // "admin" | "editor" | "viewer"
+   ```
+
+### Import & Export Patterns
+
+5. **Import Types**:
+   - Use `import type` for type-only imports to improve build performance
+   ```typescript
+   // ✅ Type-only import
+   import type { User } from './types';
+   import { fetchUser } from './api'; // Value import
+   ```
+
+6. **Default Exports**:
+   - Avoid default exports. Prefer named exports for better refactoring and IDE support
+   ```typescript
+   // ❌ Avoid default exports
+   export default function MyComponent() { ... }
+   
+   // ✅ Use named exports
+   export function MyComponent() { ... }
+   export { MyComponent };
+   ```
+
+### Advanced Patterns
+
+7. **Generic Functions with Runtime Logic**:
+   - Use `any` sparingly inside generic functions when TypeScript can't match runtime logic
+   - Always comment why `any` is necessary
+   ```typescript
+   // ✅ Justified any usage in generic function
+   function transform<T extends "hello" | "goodbye">(
+     input: T
+   ): T extends "hello" ? "goodbye" : "hello" => {
+     // TypeScript can't track this runtime logic
+     if (input === "hello") {
+       return "goodbye" as any; // Necessary for generic constraint
+     }
+     return "hello" as any;
+   }
+   ```
+
+8. **Optional Properties**:
+   - Use optional properties thoughtfully - prefer discriminated unions for complex optional state
+   - Consider if undefined should be explicit in the type
+   ```typescript
+   // ✅ Clear optional property usage
+   interface CreateUserRequest {
+     name: string;
+     email: string;
+     avatarUrl?: string; // Truly optional
+   }
+   
+   // ✅ Better: Explicit undefined for important cases
+   interface UserPreferences {
+     theme: "light" | "dark" | undefined; // Explicit: not set yet
+     notifications: boolean; // Required decision
+   }
+   ```
+
+9. **Return Type Annotations**:
+   - Add explicit return types for public APIs and complex functions
+   - Omit for simple, obvious cases
+   ```typescript
+   // ✅ Explicit return type for public API
+   export function fetchUser(id: string): Promise<User | null> {
+     return db.user.findUnique({ where: { id } });
+   }
+   
+   // ✅ Omit for obvious cases
+   function add(a: number, b: number) {
+     return a + b; // Obviously returns number
+   }
+   ```
+
+### Error Handling & Throwing
+
+10. **Throwing Patterns**:
+    - Prefer returning errors over throwing for expected error cases
+    - Use throwing only for unexpected/programmer errors
+    ```typescript
+    // ✅ Return errors for expected cases
+    function parseConfig(input: string): { success: true; data: Config } | { success: false; error: string } {
+      try {
+        const data = JSON.parse(input);
+        return { success: true, data };
+      } catch {
+        return { success: false, error: "Invalid JSON" };
+      }
+    }
+    
+    // ✅ Throw for programmer errors
+    function divide(a: number, b: number): number {
+      if (b === 0) {
+        throw new Error("Division by zero"); // Programmer error
+      }
+      return a / b;
+    }
+    ```
+
+### React & Component Patterns
+
+11. **Component Props**:
+    - Define props using interfaces for React components
+    - Use generic props for reusable components
+    ```typescript
+    // ✅ Component props interface
+    interface ButtonProps {
+      variant: "primary" | "secondary";
+      children: React.ReactNode;
+      onClick?: () => void;
+    }
+    
+    export function Button({ variant, children, onClick }: ButtonProps) {
+      return <button className={variant} onClick={onClick}>{children}</button>;
+    }
+    ```
+
+### Runtime Validation
+
+12. **Schema Validation with Type Inference**:
+    - Use Zod for runtime validation and type inference
+    - Co-locate schemas with their usage
+    ```typescript
+    import { z } from "zod";
+    
+    export const CreateUserSchema = z.object({
+      name: z.string().min(1),
+      email: z.string().email(),
+      age: z.number().int().min(18).optional(),
+    });
+    
+    export type CreateUserRequest = z.infer<typeof CreateUserSchema>;
+    
+    // ✅ Runtime validation + type safety
+    export function createUser(data: unknown): CreateUserRequest {
+      return CreateUserSchema.parse(data);
+    }
+    ```
+
+### Naming Conventions
+
+13. **Naming Standards**:
+    - Files: `kebab-case.ts`
+    - Variables/functions: `camelCase`
+    - Classes/types/interfaces: `PascalCase`
+    - Constants: `SCREAMING_SNAKE_CASE`
+    - Generic type parameters: `T` prefix (`TItem`, `TKey`)
+    ```typescript
+    // ✅ Consistent naming
+    interface UserPreferences {} // PascalCase
+    const MAX_RETRIES = 3; // SCREAMING_SNAKE_CASE
+    type RecordOfArrays<TItem> = Record<string, TItem[]>; // T prefix
+    ```
+
+### Documentation
+
+14. **JSDoc Comments**:
+    - Add JSDoc for public APIs and complex logic
+    - Focus on the "why" and usage examples
+    ```typescript
+    /**
+     * Processes user data with rate limiting and validation.
+     * 
+     * @param userId - The unique identifier for the user
+     * @param options - Processing configuration
+     * @returns Promise resolving to processed user data
+     * 
+     * @example
+     * ```typescript
+     * const result = await processUser("123", { validateEmail: true });
+     * ```
+     */
+    export async function processUser(
+      userId: string, 
+      options: ProcessingOptions
+    ): Promise<ProcessedUser> {
+      // Implementation...
+    }
+    ```

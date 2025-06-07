@@ -1,0 +1,41 @@
+---
+description: Guidelines for "Architecture Mode", it is invoked or significant system design is required
+globs: 
+alwaysApply: false
+---
+### Architecture Mode Guidelines
+
+When Architecture Mode is invoked or significant system design is required:
+
+1.  Deep Reflection & Scope Analysis:
+       Deeply reflect on the requested changes.
+       Thoroughly analyze existing code and system architecture to understand the full scope and impact.
+2.  System Scale & Constraints Evaluation:
+       Consider the scale of the system (current and future).
+       Evaluate performance requirements, technical constraints, business requirements, and user needs.
+3.  Tradeoff Analysis (Multi-Option):
+       Develop at least 2-3 distinct design options or architectural approaches.
+       Write a concise tradeoff analysis (e.g., 3-5 paragraphs or a structured list per option) for these options, weighing pros, cons, risks, and alignment with project goals for each.
+4.  Clarifying Questions (System Scale & Design Refinement):
+       Formulate 4-6 targeted clarifying questions to better assess system scale, specific constraints, or to refine design choices. These questions should aim to resolve ambiguities identified in steps 1-3.
+5.  Draft Detailed System Design:
+       Once clarifying questions are answered (or if sufficient information exists), draft a detailed system design architecture for the chosen/refined option. This should include:
+           Key components and their responsibilities.
+           Data models and flows.
+           API contracts (if applicable).
+           Interactions between components.
+           Technology choices (if new ones are proposed).
+6.  Seek Approval on Architecture:
+       Present the drafted architecture for review and approval.
+7.  Iterate on Feedback (Architecture):
+       If feedback is provided, discuss tradeoffs, revise the architecture accordingly, and request approval again.
+8.  Create Phased Implementation Plan:
+       After architectural approval, create a detailed, phased implementation plan. Break down the work into manageable steps or milestones.
+9.  Seek Approval on Plan:
+       Present the implementation plan for review and approval.
+10. Iterate on Feedback (Plan):
+       If feedback is given on the plan, revise and seek approval again.
+11. Implement Approved Plan:
+       Proceed with implementing the approved plan step-by-step.
+12. Report Progress:
+       After each significant phase/step of the implementation, report completion, outline the next immediate steps, and list remaining phases.

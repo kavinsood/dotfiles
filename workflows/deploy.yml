@@ -1,0 +1,193 @@
+name: 🚀 Deployments
+on:
+  workflow_run:
+    workflows: ['🔍 CI', '🚀 Release'] # Listen to completion of CI and Release workflows
+    types:
+      - completed
+
+# ADDED: permissions block to allow creating deployments without needing explicit token
+permissions:
+  contents: write
+  packages: write
+  pull-requests: write
+  deployments: write # NEW: Required for creating GitHub deployments
+
+jobs:
+  preview_deployment:
+    name: 🏞️ Preview Deployment
+    # Runs if CI workflow completed successfully for a push to a non-main branch
+    if: >
+      github.event.workflow_run.name == '🔍 CI' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch != 'main' &&
+      github.event.workflow_run.event == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout specific commit from CI run
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: 🔧 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: 🟢 Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22 # Ensure this matches your project's Node.js version
+          cache: 'pnpm'
+
+      - name: 📦 Install dependencies
+        run: pnpm install
+
+      # NEW: Create GitHub deployment entry (shows up in Deployments tab immediately)
+      - name: 🚀 Create GitHub deployment
+        id: deployment
+        uses: chrnorm/deployment-action@v2
+        with:
+          token: ${{ github.token }} # Uses default token with deployments permission
+          environment: preview
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: 🏗️ Build for deployment
+        run: npx opennextjs-cloudflare build
+
+      - name: 🔍 Validate Cloudflare secrets
+        run: |
+          if [ -z "${{ secrets.CLOUDFLARE_API_TOKEN }}" ] || [ -z "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" ]; then
+            echo "❌ Missing required Cloudflare credentials"
+            exit 1
+          fi
+
+      - name: 🚀 Deploy Preview to Cloudflare
+        id: deploy-preview
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+
+      # NEW: Extract the actual deployment URL from Cloudflare's output
+      - name: 🔍 Extract deployment URL
+        id: extract-url
+        if: success()
+        run: |
+          # Get the raw output from wrangler deploy
+          DEPLOY_OUTPUT='${{ steps.deploy-preview.outputs.command-output }}'
+          echo "Raw wrangler output:"
+          echo "$DEPLOY_OUTPUT"
+
+          # Extract URL using multiple patterns to catch different wrangler output formats
+          DEPLOYMENT_URL=""
+
+          # Try to find workers.dev URL in output
+          if echo "$DEPLOY_OUTPUT" | grep -q "workers.dev"; then
+            DEPLOYMENT_URL=$(echo "$DEPLOY_OUTPUT" | grep -o 'https://[^[:space:]]*\.workers\.dev[^[:space:]]*' | head -1)
+          fi
+
+          # Try to find Published to pattern
+          if [ -z "$DEPLOYMENT_URL" ] && echo "$DEPLOY_OUTPUT" | grep -q "Published to"; then
+            DEPLOYMENT_URL=$(echo "$DEPLOY_OUTPUT" | grep "Published to" | sed -n 's/.*Published to \(https:\/\/[^[:space:]]*\).*/\1/p' | head -1)
+          fi
+
+          # Fallback to default if no URL found
+          if [ -z "$DEPLOYMENT_URL" ]; then
+            DEPLOYMENT_URL="https://buildwhy.kvnsd.workers.dev"
+            echo "⚠️ Could not extract URL from output, using fallback"
+          fi
+
+          echo "🎯 Extracted deployment URL: $DEPLOYMENT_URL"
+          echo "deployment-url=$DEPLOYMENT_URL" >> $GITHUB_OUTPUT
+
+      # NEW: Update deployment status to SUCCESS with the actual preview URL from Cloudflare
+      # This creates the clickable link in GitHub's Deployments tab
+      - name: ✅ Update deployment status (success)
+        if: success()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ github.token }}
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          state: success
+          environment-url: ${{ steps.extract-url.outputs.deployment-url }}
+
+      # NEW: Update deployment status to FAILURE if deployment fails
+      - name: ❌ Update deployment status (failure)
+        if: failure()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ github.token }}
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          state: failure
+
+  production_deployment:
+    name: 🌃 Production Deployment
+    # Runs if Release workflow completed successfully (which only runs on main)
+    if: >
+      github.event.workflow_run.name == '🚀 Release' &&
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code from main branch
+        uses: actions/checkout@v4
+        # Default checkout is fine; Release workflow runs on the latest commit of main
+
+      - name: 🔧 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: 🟢 Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22 # Ensure this matches your project's Node.js version
+          cache: 'pnpm'
+
+      - name: 📦 Install dependencies
+        run: pnpm install
+
+      # NEW: Create GitHub deployment entry for production
+      - name: 🚀 Create GitHub deployment
+        id: deployment
+        uses: chrnorm/deployment-action@v2
+        with:
+          token: ${{ github.token }}
+          environment: production # Different environment name for production
+          ref: ${{ github.sha }} # Use current SHA for production
+
+      - name: 🏗️ Build for deployment
+        run: npx opennextjs-cloudflare build
+
+      - name: 🔍 Validate Cloudflare secrets
+        run: |
+          if [ -z "${{ secrets.CLOUDFLARE_API_TOKEN }}" ] || [ -z "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" ]; then
+            echo "❌ Missing required Cloudflare credentials"
+            exit 1
+          fi
+
+      - name: 🚀 Deploy Production to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+
+      # NEW: Update production deployment status to SUCCESS
+      - name: ✅ Update deployment status (success)
+        if: success()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ github.token }}
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          state: success
+          environment-url: https://buildwhy.kvnsd.workers.dev # Your production URL
+
+      # NEW: Update production deployment status to FAILURE if deployment fails
+      - name: ❌ Update deployment status (failure)
+        if: failure()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ github.token }}
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          state: failure

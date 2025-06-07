@@ -1,0 +1,49 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+description: Essential code quality standards and development principles complementing TaskMaster workflow
+globs: []
+alwaysApply: true
+
+### Code Quality Standards
+
+1. **Code Philosophy**:
+   - Write the absolute minimum code required. Prioritize simplicity and optimization.
+   - Fix actual issues directly - no fallback implementations for bugs.
+   - Make no changes outside current task scope. Never break existing functionality.
+
+2. **Code Structure & Organization**:
+   - Maintain well-organized project structure. Actively avoid redundancy.
+   - Use lowercase kebab-case for directories (`utils/data-fetchers`).
+   - Split long files (>300 lines) or functions (>50 lines) into modular units.
+   - File structure: exports → components/definitions → helpers → static data → types.
+
+3. **Code Standards**:
+   - Format with Prettier (80-char width). Treat ESLint warnings as errors.
+   - Prefer named exports: `export { MyFunction }`.
+   - Use descriptive names. Booleans: `isAuthenticated`, `hasSubscription`.
+   - Prefer functional programming. Avoid classes unless essential for library patterns.
+   - Use early returns to reduce nesting: `if (!user) return;`.
+
+### Error Handling & Security
+
+4. **Error Management**:
+   - Never swallow exceptions without proper handling.
+   - Use `try-catch` for all async operations. Define custom error types for clarity.
+   - Log server errors, display user-friendly client messages.
+
+5. **Security Basics**:
+   - Load API keys/secrets from environment variables only.
+   - Never hardcode secrets in source code.
+   - Do NOT edit/delete database data without explicit permission.
+
+### Git Standards
+
+6. **Commit Quality**:
+   - Use Conventional Commits: `feat: add login endpoint`.
+   - Commit only when tests pass and functionality is self-contained.
+   - Use `git rm <file>` for tracked file deletion.
+
+*Note: TaskMaster handles comprehensive workflow, task management, and project setup. These rules focus on code quality and standards.*
