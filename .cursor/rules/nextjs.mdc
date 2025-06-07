@@ -1,9 +1,9 @@
 ---
 description: 
-globs: app/**/*.ts,app/**/*.tsx,components/**/*.ts,components/**/*.tsx,lib/**/*.ts,utils/**/*.ts,middleware.ts
+globs: *.ts,*.tsx
 alwaysApply: false
 ---
-### I. Project Structure & Organization (Next.js App Router)
+# I. Project Structure & Organization (Next.js App Router)
 
 1.  File Naming & Organization:
        Route directories: kebab-case (e.g., `app/assistant-config/route.ts`).
@@ -19,7 +19,7 @@ alwaysApply: false
        `not-found.tsx`: UI for 404 errors.
        `route.ts`: For API endpoints within the App Router.
 
-### II. API Routes & Data Handling (Next.js)
+# II. API Routes & Data Handling (Next.js)
 
 1.  API Route Structure (Example):
        Use Zod for request/response validation and type inference.
@@ -110,7 +110,7 @@ alwaysApply: false
     // }
     ```
 
-### III. Performance Optimization (Next.js)
+# III. Performance Optimization (Next.js)
 
 1.  Caching:
        Cache static or infrequently changing assets/data using `fetch` options (`next: { revalidate: <seconds> }`) or Route Segment Config.

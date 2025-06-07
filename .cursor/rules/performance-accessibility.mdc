@@ -1,13 +1,13 @@
 ---
 description: 
-globs: **/*.{tsx}, **/*.{jsx}, **/*.{ts}, **/*.{js} **/*.css, **/*.scss
+globs: *.tsx,*.jsx,*.ts,*.js,*.css
 alwaysApply: false
 ---
 description: Performance optimization and accessibility guidelines for modern web applications
 globs: ["**/*.{tsx,jsx,ts,js}", "**/*.css", "**/*.scss"]
 alwaysApply: false
 
-### Performance Optimization
+# Performance Optimization
 
 1. **Bundle Optimization**:
    - Use dynamic imports for code splitting: `const Component = lazy(() => import('./Component'))`
@@ -33,7 +33,7 @@ alwaysApply: false
    - Use database-level filtering instead of application-level filtering
    - Cache expensive API calls with appropriate TTL
 
-### Accessibility (a11y)
+# Accessibility (a11y)
 
 1. **Semantic HTML**:
    - Use semantic HTML elements: `<button>`, `<nav>`, `<main>`, `<section>`
@@ -57,7 +57,7 @@ alwaysApply: false
    - Don't rely solely on color to convey information
    - Test with reduced motion preferences: `prefers-reduced-motion`
 
-### Core Web Vitals
+# Core Web Vitals
 
 1. **Largest Contentful Paint (LCP)**:
    - Optimize critical resource loading

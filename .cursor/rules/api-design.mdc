@@ -1,13 +1,9 @@
 ---
-description: 
-globs: **/api/**,**/routes/**,**/*.api.ts,**/*.api.js,**/graphql/**
+description: Everything to do with API routes
+globs: 
 alwaysApply: false
 ---
-description: Modern API design patterns, validation, error handling, and developer experience guidelines
-globs: ["**/api/**", "**/routes/**", "**/*.api.{ts,js}", "**/graphql/**"]
-alwaysApply: false
-
-### REST API Design
+# REST API Design
 
 1. **Resource Naming & URLs**:
    - Use nouns for resources: `/users`, `/posts`, `/comments`
@@ -35,7 +31,7 @@ alwaysApply: false
    { "error": { "code": "VALIDATION_ERROR", "message": "Invalid input", "details": [...] } }
    ```
 
-### API Validation & Security
+# API Validation & Security
 
 1. **Input Validation with Zod**:
    ```typescript
@@ -62,7 +58,7 @@ alwaysApply: false
    - Validate Content-Type headers
    - Sanitize all user inputs
 
-### Error Handling Patterns
+# Error Handling Patterns
 
 1. **Consistent Error Structure**:
    ```typescript
@@ -84,7 +80,7 @@ alwaysApply: false
    - `429 Too Many Requests`: Rate limit exceeded
    - `500 Internal Server Error`: Unexpected server errors
 
-### API Documentation & Developer Experience
+# API Documentation & Developer Experience
 
 1. **OpenAPI/Swagger Integration**:
    - Generate API documentation from code
@@ -104,7 +100,7 @@ alwaysApply: false
    };
    ```
 
-### GraphQL Patterns (if applicable)
+# GraphQL Patterns (if applicable)
 
 1. **Schema Design**:
    - Use descriptive field names and types
@@ -123,7 +119,7 @@ alwaysApply: false
    });
    ```
 
-### Performance & Caching
+# Performance & Caching
 
 1. **Response Optimization**:
    - Implement HTTP caching headers (`Cache-Control`, `ETag`)
@@ -137,7 +133,7 @@ alwaysApply: false
    - Use read replicas for read-heavy operations
    - Consider database-level caching (Redis)
 
-### API Versioning
+# API Versioning
 
 1. **Versioning Strategy**:
    - Use URL versioning: `/api/v1/users`, `/api/v2/users`

@@ -3,11 +3,7 @@ description:
 globs: 
 alwaysApply: true
 ---
-description: Essential code quality standards and development principles complementing TaskMaster workflow
-globs: []
-alwaysApply: true
-
-### Code Quality Standards
+# Code Quality Standards
 
 1. **Code Philosophy**:
    - Write the absolute minimum code required. Prioritize simplicity and optimization.
@@ -27,7 +23,7 @@ alwaysApply: true
    - Prefer functional programming. Avoid classes unless essential for library patterns.
    - Use early returns to reduce nesting: `if (!user) return;`.
 
-### Error Handling & Security
+# Error Handling & Security
 
 4. **Error Management**:
    - Never swallow exceptions without proper handling.
@@ -39,7 +35,7 @@ alwaysApply: true
    - Never hardcode secrets in source code.
    - Do NOT edit/delete database data without explicit permission.
 
-### Git Standards
+# Git Standards
 
 6. **Commit Quality**:
    - Use Conventional Commits: `feat: add login endpoint`.

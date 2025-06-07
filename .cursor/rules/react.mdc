@@ -1,6 +1,6 @@
 ---
 description: 
-globs: **/*.tsx,**/*.jsx,src/hooks/**/*.ts,src/contexts/**/*.ts
+globs: **/*.tsx,**/*.jsx
 alwaysApply: false
 ---
 # React Development Patterns

@@ -1,14 +1,8 @@
 ---
-description: 
-globs: drizzle.config.ts,src/db/schema.ts,src/db/**/*.ts,src/lib/db/**/*.ts,src/lib/db/**/*.tsx,app/**/route.ts,app/**/page.tsx,app/**/layout.tsx
+description: Guidelines for database management using Drizzle ORM with Cloudflare D1 - drizzle config, schema, db, api routes that reference the db, layout.tsx
+globs: 
 alwaysApply: false
 ---
-description: Guidelines for database management using Drizzle ORM with Cloudflare D1.
-globs: ["drizzle.config.ts", "src/db/schema.ts", "src/lib/db//.{ts,tsx}", "app/api//route.ts"] # Adjust as needed
-alwaysApply: false
-
-### Database: Drizzle ORM & Cloudflare D1
-
 1.  Setup & Configuration:
        Ensure Cloudflare D1 is correctly set up and configured in `wrangler.toml`.
        Connect Drizzle ORM to D1 using the appropriate driver (`drizzle-orm/d1`).
@@ -44,6 +38,3 @@ alwaysApply: false
        Consider specific D1 or Drizzle error types if necessary.
 6.  Backups & Recovery:
        Be aware of Cloudflare D1's backup mechanisms. For critical data, consider additional backup strategies if needed.
-7.  References:
-       Drizzle ORM Documentation
-       Cloudflare D1 Documentation

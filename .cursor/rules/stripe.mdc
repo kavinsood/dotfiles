@@ -3,11 +3,7 @@ description: When dealing with anything that involves stripe such as subscriptio
 globs: 
 alwaysApply: false
 ---
-description: Guidelines for integrating Stripe for payments and subscriptions.
-globs: ["app/api/stripe/**/*.{ts,tsx}", "components/billing/**/*.{ts,tsx}", "lib/stripe/**/*.ts"] # Adjust as needed
-alwaysApply: false
-
-### Stripe Integration
+# Stripe Integration
 
 1.  **Core Functionality:**
     *   Use Stripe for handling payments and managing subscriptions.
