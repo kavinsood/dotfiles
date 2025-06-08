@@ -33,14 +33,8 @@ jobs:
       - name: 📦 Install dependencies
         run: pnpm install
 
-      # - name: 🔧 Install Playwright Browsers
-      #   run: pnpm playwright install --with-deps
-
-      # - name: ✍️ Markdownlint
-      #   run: pnpm lint:md
-
-      # - name: 🎨 Check formatting
-      #   run: pnpm format:check
+      - name: 🎨 Check formatting
+        run: pnpm format:check
 
       - name: ✅ Lint
         run: pnpm lint
@@ -50,6 +44,9 @@ jobs:
 
       - name: 🧪 Tests
         run: pnpm test
+
+      - name: 🔨 Build
+        run: pnpm build
 
       # - name: 🧪 E2E Tests
       #   run: pnpm test:e2e
