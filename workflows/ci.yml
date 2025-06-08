@@ -42,8 +42,8 @@ jobs:
       # - name: 🎨 Check formatting
       #   run: pnpm format:check
 
-      # - name: ✅ Lint
-      #   run: pnpm lint
+      - name: ✅ Lint
+        run: pnpm lint
 
       - name: ⚡ Check types
         run: pnpm typecheck
