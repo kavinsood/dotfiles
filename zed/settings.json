@@ -7,9 +7,21 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "vim_mode": false,
+  "agent": {
+    "model_parameters": [],
+    "default_profile": "write",
+    "version": "2"
+  },
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
   "features": {
     "edit_prediction_provider": "zed"
   },
+  "ui_font_family": "RecMonoLinear Nerd Font",
+  "buffer_font_family": "RecMonoLinear Nerd Font",
   "ui_font_size": 16,
   "buffer_font_size": 16,
   "theme": {
@@ -18,4 +30,3 @@
     "dark": "Tokyo Night"
   }
 }
-
