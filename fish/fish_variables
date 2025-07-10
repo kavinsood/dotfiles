@@ -11,6 +11,7 @@ SETUVAR _fisher_jorgebucaran_2F_hydro_files:\x7e/\x2econfig/fish/functions/fish_
 SETUVAR _fisher_oh_2D_my_2D_fish_2F_plugin_2D_bang_2D_bang_files:\x7e/\x2econfig/fish/functions/__history_previous_command\x2efish\x1e\x7e/\x2econfig/fish/functions/__history_previous_command_arguments\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/plugin\x2dbang\x2dbang\x2efish
 SETUVAR _fisher_plugins:jorgebucaran/hydro\x1eoh\x2dmy\x2dfish/plugin\x2dbang\x2dbang\x1ejethrokuan/z
 SETUVAR _fisher_upgraded_to_4_4:\x1d
+SETUVAR _hydro_git_10008:master\u2022\x20
 SETUVAR _hydro_git_12048:main\x20
 SETUVAR _hydro_git_15545:master\u2022\x20
 SETUVAR _hydro_git_15689:main\x20
@@ -19,6 +20,7 @@ SETUVAR _hydro_git_17051:master\u2022\x20
 SETUVAR _hydro_git_1781:master\u2022\x20
 SETUVAR _hydro_git_18564:\x1d
 SETUVAR _hydro_git_19062:master\u2022\x20
+SETUVAR _hydro_git_28554:master\u2022\x20
 SETUVAR _hydro_git_313856:main\u2022\x20
 SETUVAR _hydro_git_46687:master\u2022\x20
 SETUVAR _hydro_git_53312:master\x20
@@ -56,4 +58,4 @@ SETUVAR fish_pager_color_description:yellow\x1e\x2di
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/home/kavin/\x2enpm\x2dglobal/bin\x1e/usr/local/bin
+SETUVAR fish_user_paths:/home/kavin/\x2elocal/share/omarchy/bin\x1e/home/kavin/\x2enpm\x2dglobal/bin\x1e/usr/local/bin
