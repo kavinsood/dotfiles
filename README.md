@@ -10,8 +10,6 @@
 
 cursor-dark midnight theme
 
----
-
 ## development apps
 
 terminal setup -> ghostty / fish
