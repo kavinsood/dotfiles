@@ -2,12 +2,13 @@
 
 - arch linux
 - hyprland
-- alacritty
+- ghostty / alacritty
 - cursor / vscode
 - neovim / zed
 - fish
+- tmux / zellij
 
-kanagawa theme
+cursor-dark theme (nvim)
 
 ---
 
@@ -17,7 +18,7 @@ hyprland setup -> fonts, transparency, workspaces and stuff
 
 ## development apps
 
-terminal setup -> alacritty / fish
+terminal setup -> ghostty / alacritty / fish
 node, bun..
 zed / nvim
 cursor / vscode
@@ -26,6 +27,10 @@ cursor / vscode
 .
 ├── alacritty
 │   └── alacritty.toml
+├── claude
+│   ├── CLAUDE.md
+│   ├── settings.json
+│   └── settings.local.json
 ├── code
 │   └── settings.json
 ├── color-schemes
@@ -33,6 +38,7 @@ cursor / vscode
 │   └── TokyoNight.colors
 ├── fish
 │   ├── conf.d
+│   │   ├── bedrock.fish
 │   │   ├── hydro.fish
 │   │   ├── plugin-bang-bang.fish
 │   │   └── z.fish
@@ -40,6 +46,7 @@ cursor / vscode
 │   ├── fish_plugins
 │   ├── fish_variables
 │   └── functions
+│       ├── dev.fish
 │       ├── fish_mode_prompt.fish
 │       ├── fish_prompt.fish
 │       ├── __history_previous_command_arguments.fish
@@ -50,6 +57,8 @@ cursor / vscode
 │       └── __z.fish
 ├── ghostty
 │   └── config
+├── git
+│   └── .gitconfig
 ├── hypr
 │   ├── hypridle.conf
 │   ├── hyprland.conf
@@ -71,14 +80,14 @@ cursor / vscode
 │               ├── indent_line.lua
 │               ├── lint.lua
 │               └── neo-tree.lua
-├── omarchy
 ├── README.md
+├── tmux.conf
 ├── workflows
 │   ├── ci.yml
 │   ├── deploy.yml
 │   └── release.yml
-└── zed
-    └── settings.json
-
-18 directories, 38 files
+├── zed
+│   └── settings.json
+└── zellij
+    └── config.kdl
 
