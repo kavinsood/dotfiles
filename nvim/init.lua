@@ -415,10 +415,15 @@ require('lazy').setup({
 	},
 
 	{
-		'folke/tokyonight.nvim',
-		priority = 1000, -- Make sure to load this before all the other start plugins.
+		"ydkulks/cursor-dark.nvim",
+		lazy = false,
+		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme 'tokyonight-night'
+			-- vim.cmd.colorscheme("cursor-dark-midnight")
+			require("cursor-dark").setup({
+				-- For theme
+				style = "dark-midnight",
+			})
 		end,
 	},
 
@@ -497,20 +502,3 @@ require('lazy').setup({
 		end,
 	},
 })
-
--- Neovide Settings
-vim.g.neovide_fullscreen = true
-vim.g.neovide_floating_blur_amount_x = 4.0
-vim.g.floaterm_winblend = 15
-vim.g.neovide_floating_blur_amount_y = 4.0
-vim.g.neovide_remember_window_size = true
-vim.g.neovide_transparency = 1
-vim.g.neovide_cursor_animation_length = 0.13
-vim.g.neovide_cursor_trail_length = 0.8
-vim.g.neovide_cursor_vfx_mode = "railgun" -- Railgun particles behind cursor
-vim.g.neovide_cursor_vfx_opacity = 200.0
-vim.o.guifont = "RecMonoLinear Nerd Font:h12"
-if vim.g.neovide == true then
-	vim.keymap.set({ "n", "x" }, "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
-	vim.keymap.set({ "n", "x" }, "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
-end
